@@ -103,7 +103,7 @@ class Form extends React.Component {
     for (let name in validation) {
       let res = this.getValidationResult(name, force);
       
-      if (!res.isValid) {
+      if (res.status === 'error') {
         return false;
       }
     }
