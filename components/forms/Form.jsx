@@ -1,98 +1,129 @@
-import {} from './Form.less';
 import React from 'react';
 
 class Form extends React.Component {
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit.bind(this)}>
         {this.props.children}
       </form>
      )
   }
+
   constructor(props) {
     super(props);
-    let inputValues = {};
-    let pristineList = {};
-    for (let key in props.validations) {
-      inputValues[key] = '';
-      pristineList[key] = true;
-    }
-    this.state = {};
-    this.state.inputValues = inputValues;
-    this.state.pristineList = pristineList;
-    this.handleSubmit = (event) => {
-      let newPristineList = Object.assign({}, this.state.pristineList);
-      for (let key in newPristineList) {
-        newPristineList[key] = false;
-      }
-      this.setState(Object.assign({}, this.state, {
-        pristineList: newPristineList
-      }));
-      
-      let canSubmit = this.checkFormValid(true);
-      if (!canSubmit) {
-        event.preventDefault();
-      }
-      
-      let customSubmit = props.onSubmit;
-      if (customSubmit && typeof customSubmit === 'function') {
-        props.onSubmit(event);
-      }
+    this.state = {
+      inputState: {}
     };
-    this.getValidationResult = (vid, force=false) => {
-      let isPristine = this.state.pristineList[vid];
-      let res = {
+  }
+
+  getChildContext() {
+    let register = (name, value) => {
+      this.setState((prevState, curProps) => {
+        let newInputState = Object.assign({}, prevState.inputState);
+        newInputState[name] = {
+          value: value,
+          isPristine: true
+        };
+        return Object.assign({}, prevState, {
+          inputState: newInputState
+        });
+      });
+    };
+
+    let notifyChange = (name, value) => {
+      this.setState((prevState, curProps) => {
+        let newInputState = Object.assign({}, prevState.inputState, {
+          [name]: {
+            value: value,
+            isPristine: false
+          }
+        });
+
+        return Object.assign({}, prevState, {
+          inputState: newInputState
+        });
+      });
+    };
+
+    let getValidationResult = (inputName, force = false) => {
+      let inputState = this.state.inputState;
+      let validation = this.props.validation;
+      let defaultRes = {
         isValid: true,
         errMsg: ''
       };
-      if (!isPristine || force) {
-        let value = this.state.inputValues[vid];
-        let validations = this.props.validations[vid];
-        let validationErrors = this.props.validationErrors[vid];
-        for (let key in validations) {
-          if (validations.hasOwnProperty(key) && typeof validations[key] === 'function') {
-            let isValid = validations[key](value);
-            if (!isValid) {
-              res.isValid = false;
-              res.errMsg = validationErrors[key] || 'wrong input';
+
+      if (inputState.hasOwnProperty(inputName) && validation.hasOwnProperty(inputName)) {
+        let isPristine = inputState[inputName].isPristine;
+
+        if (!isPristine || force) {
+          let value = inputState[inputName].value;
+          let tests = this.props.validation[inputName];
+          let errMsgs = this.props.validation[inputName];
+          
+          for (let key in tests) {
+            if (typeof tests[key] === 'function') {
+              let isValid = tests[key](value);
+
+              if (!isValid) {
+                return {
+                  isValid: false,
+                  errMsg: errMsgs[key] || 'Wrong Input'
+                }
+              }
             }
           }
         }
-      }
-      return res;
+      };
+
+      return defaultRes;
     };
-    this.checkFormValid = (force=false) => {
-      for (let vid in this.props.validations) {
-        let res = this.getValidationResult(vid, force);
+
+    let checkFormValid = (force = false) => {
+      let inputState = this.state.inputState;
+      let validation = this.props.validation;
+
+      for (let name in validation) {
+        let res = getValidationResult(name, force);
+        
         if (!res.isValid) {
           return false;
         }
       }
+
       return true;
     };
-  }
-  getChildContext() {
+
     let mixin = {
-      getValidationResult: this.getValidationResult,
-      notifyChange: (component, value) => {
-        let vid = component.props.vid;
-        let newInputValues = Object.assign({}, this.state.inputValues, {
-          [component.props.vid]: value
-        });
-        let newPristineList = Object.assign({}, this.state.pristineList, {
-          [component.props.vid]: false
-        });
-        this.setState(Object.assign({}, this.state, {
-          inputValues: newInputValues,
-          pristineList: newPristineList
-        }));
-      },
-      checkFormValid: this.checkFormValid
+      register, notifyChange, getValidationResult, checkFormValid
     };
+
     return {
       FormMixin: mixin
     }
   }
+
+  handleSubmit(event) {
+    this.setState((prevState, curProps) => {
+      let newInputState = Object.assign({}, prevState.inputState);
+      
+      for (let key in newInputState) {
+        newInputState[key].isPristine = false;
+      }
+
+      return Object.assign({}, this.state, {
+        inputState: newInputState
+      });
+    });
+    
+    if (!this.checkFormValid(true)) {
+      event.preventDefault();
+    }
+    
+    if (typeof props.onSubmit === 'function') {
+      props.onSubmit(event);
+    }
+  };
 }
 
 Form.childContextTypes = {
@@ -100,12 +131,12 @@ Form.childContextTypes = {
 };
 
 Form.propTypes = {
-  validations: React.PropTypes.objectOf(
+  validation: React.PropTypes.objectOf(
     React.PropTypes.objectOf(
-      React.PropTypes.func.isRequired
+      React.PropTypes.func
     )
   ),
-  validationErrors: React.PropTypes.objectOf(
+  validationError: React.PropTypes.objectOf(
     React.PropTypes.objectOf(
       React.PropTypes.string
     )

@@ -7,61 +7,89 @@
   color: #B21F1F;
   font-size: 0.875em;
 }
+
+.placeholder(@color) {
+  &::-webkit-input-placeholder { /* Safari, Chrome and Opera */
+    color: @color;
+  }
+
+  &:-moz-placeholder { /* Firefox 18- */
+    color: @color;
+  }
+
+  &::-moz-placeholder { /* Firefox 19+ */
+    color: @color;
+  }
+
+  &:-ms-input-placeholder { /* IE 10+ */
+    color: @color;
+  }
+
+  &::-ms-input-placeholder { /* Edge */
+    color: @color;
+  }
+
+  &:placeholder-shown { /* Standard one last! */
+    color: @color;
+  }
+}
+
 .Gaia-forms-Input {
   display: block;
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1;
   position: relative;
   margin-bottom: 10px;
+
   &.is-valid {
     input {
-      display: block;
-      border-color: #0D6C0D;
-      box-shadow: 1px 1px 0px 0px rgba(13, 108, 13, 0.2) inset;
+      border-color: #409240;
+
       &:focus {
-        border-color: rgba(13, 108, 13, 0.8);
-        outline: 0;
-        box-shadow: 0 0 8px rgba(13, 108, 13, 0.6);
+        border-color: #409240;
       }
     }
   }
+
   &.is-error {
     input {
-      border-color: #B21F1F;
-      box-shadow: 1px 1px 0px 0px rgba(178, 31, 31, 0.2) inset;
+      border-color: #cc2020;
+
       &:focus {
-        border-color: rgba(178, 31, 31, 0.8);
-        outline: 0;
-        box-shadow: 0 0 8px rgba(178, 31, 31, 0.6);
+        border-color: #cc2020;
       }
     }
+
     .msg {
       visibility: visible;
     }
   }
+
   input {
-    border: 1px solid #bbb;
-    border-radius: 4px;
-    padding: 0 0.6em 0 0.6em;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    height: 2em;
+    outline: 0;
+    border: 2px solid #bababa;
+    border-radius: 2px;
+    padding: 10px;
+    appearance: none;
     width: 100%;
-    background-color: #f9f9f9;
-    box-shadow: 1px 1px 0px 0px rgba(155, 155, 155, 0.2) inset;
+    background-color: white;
     display: inline-block;
     box-sizing: border-box;
-    font-size: 100%;
+    font-size: 1em;
+    transition: 0.2s border-color;
+
     &[disabled] {
       cursor: not-allowed;
-      background-color: #e5e5e5;
+      background-color: #f0f0f0;
     }
+
     &:focus {
-      border-color: rgba(136, 136, 136, 0.8);
-      outline: 0;
-      box-shadow: 0 0 8px rgba(136, 136, 136, 0.6);
+      border-color: #999;
     }
+
+    .placeholder(#aaa);
   }
+
   .msg {
     .form-msg-style();
   }
@@ -75,6 +103,7 @@
   border-radius: 5px;
   font-size: 0.875rem;
   box-sizing: border-box;
+
   &:after {
     position: absolute;
     display: inline-block;
@@ -88,11 +117,13 @@
     top: 0.8em;
     pointer-events: none;
   }
+
   &.is-valid {
     select {
       display: block;
       border-color: #0D6C0D;
       box-shadow: 1px 1px 0px 0px rgba(13, 108, 13, 0.2) inset;
+
       &:focus {
         border-color: rgba(13, 108, 13, 0.8);
         outline: 0;
@@ -100,20 +131,24 @@
       }
     }
   }
+
   &.is-error {
     select {
       border-color: #B21F1F;
       box-shadow: 1px 1px 0px 0px rgba(178, 31, 31, 0.2) inset;
+
       &:focus {
         border-color: rgba(178, 31, 31, 0.8);
         outline: 0;
         box-shadow: 0 0 8px rgba(178, 31, 31, 0.6);
       }
     }
+
     .msg {
       display: block;
     }
   }
+
   select {
     width: 100%;
     padding: 0 1.2em 0 0.6em;
@@ -126,16 +161,19 @@
     height: 2em;
     background-color: #f9f9f9;
     vertical-align: top;
+
     &:focus {
       border-color: rgba(136, 136, 136, 0.8);
       outline: 0;
       box-shadow: 0 0 8px rgba(136, 136, 136, 0.8);
     }
+
     &[disabled] {
       cursor: not-allowed;
       background-color: #e5e5e5;
     }
   }
+
   .msg {
     .form-msg-style();
   }

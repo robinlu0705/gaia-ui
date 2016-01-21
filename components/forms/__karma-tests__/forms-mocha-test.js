@@ -28,8 +28,8 @@ describe('Form with empty input', () => {
   };
   
   var form = TestUtils.renderIntoDocument(
-    <Form validations={validation} validationErrors={validationError}>
-      <Input vid='1' />
+    <Form validation={validation} validationError={validationError}>
+      <Input name='1' />
       <Submit />
     </Form>
   );
