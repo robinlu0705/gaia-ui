@@ -11,8 +11,8 @@ class Input extends React.Component {
       className: ''
     })
 
-    let getValidationResult = this.context.FormMixin && this.context.FormMixin.getValidationResult;
-    let validationRes = typeof getValidationResult === 'function' ? getValidationResult(this.props.name) : {};
+    let getValidationResult = this.context.FormMixin && this.context.FormMixin.getValidationResult || function() { return { isValid: true }; };
+    let validationRes = typeof getValidationResult === 'function' && getValidationResult(this.props.name);
     if (!validationRes.isValid) {
       classes.push('is-error');
       errMsg = validationRes.errMsg;

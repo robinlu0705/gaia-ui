@@ -3,7 +3,7 @@ import React from 'react';
 
 class Submit extends React.Component {
   render() {
-    let checkFormValid = this.context.FormMixin && this.context.FormMixin.checkFormValid || function() {};
+    let checkFormValid = this.context.FormMixin && this.context.FormMixin.checkFormValid || function() { return true; };
     let isFormValid = checkFormValid();
     let attrDisabled = isFormValid && '' || 'disabled';
     return (
