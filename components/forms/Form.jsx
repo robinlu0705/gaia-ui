@@ -17,91 +17,99 @@ class Form extends React.Component {
   }
 
   getChildContext() {
-    let register = (name, value) => {
-      this.setState((prevState, curProps) => {
-        let newInputState = Object.assign({}, prevState.inputState);
-        newInputState[name] = {
-          value: value,
-          isPristine: true
-        };
-        return Object.assign({}, prevState, {
-          inputState: newInputState
-        });
-      });
-    };
-
-    let notifyChange = (name, value) => {
-      this.setState((prevState, curProps) => {
-        let newInputState = Object.assign({}, prevState.inputState, {
-          [name]: {
-            value: value,
-            isPristine: false
-          }
-        });
-
-        return Object.assign({}, prevState, {
-          inputState: newInputState
-        });
-      });
-    };
-
-    let getValidationResult = (inputName, force = false) => {
-      let inputState = this.state.inputState;
-      let validation = this.props.validation;
-      let defaultRes = {
-        isValid: true,
-        errMsg: ''
-      };
-
-      if (inputState.hasOwnProperty(inputName) && validation.hasOwnProperty(inputName)) {
-        let isPristine = inputState[inputName].isPristine;
-
-        if (!isPristine || force) {
-          let value = inputState[inputName].value;
-          let tests = this.props.validation[inputName];
-          let errMsgs = this.props.validation[inputName];
-          
-          for (let key in tests) {
-            if (typeof tests[key] === 'function') {
-              let isValid = tests[key](value);
-
-              if (!isValid) {
-                return {
-                  isValid: false,
-                  errMsg: errMsgs[key] || 'Wrong Input'
-                }
-              }
-            }
-          }
-        }
-      };
-
-      return defaultRes;
-    };
-
-    let checkFormValid = (force = false) => {
-      let inputState = this.state.inputState;
-      let validation = this.props.validation;
-
-      for (let name in validation) {
-        let res = getValidationResult(name, force);
-        
-        if (!res.isValid) {
-          return false;
-        }
-      }
-
-      return true;
-    };
-
     let mixin = {
-      register, notifyChange, getValidationResult, checkFormValid
+      register: this.register.bind(this),
+      notifyChange: this.notifyChange.bind(this),
+      getValidationResult: this.getValidationResult.bind(this),
+      checkFormValid: this.checkFormValid.bind(this)
     };
 
     return {
       FormMixin: mixin
     }
   }
+
+  register(name, value) {
+    this.setState((prevState, curProps) => {
+      let newInputState = Object.assign({}, prevState.inputState);
+      newInputState[name] = {
+        value: value,
+        isPristine: true
+      };
+      return Object.assign({}, prevState, {
+        inputState: newInputState
+      });
+    });
+  };
+
+  notifyChange(name, value) {
+    this.setState((prevState, curProps) => {
+      let newInputState = Object.assign({}, prevState.inputState, {
+        [name]: {
+          value: value,
+          isPristine: false
+        }
+      });
+
+      return Object.assign({}, prevState, {
+        inputState: newInputState
+      });
+    });
+  };
+
+  getValidationResult(inputName, force = false) {
+    let inputState = this.state.inputState;
+    let validation = this.props.validation;
+    let defaultRes = {
+      status: 'normal',
+      errMsg: ''
+    };
+
+    if (inputState.hasOwnProperty(inputName) && validation.hasOwnProperty(inputName)) {
+      let isPristine = inputState[inputName].isPristine;
+
+      if (!isPristine || force) {
+        let value = inputState[inputName].value;
+        let tests = this.props.validation[inputName];
+        let errMsgs = this.props.validationError[inputName];
+        
+        for (let key in tests) {
+          if (typeof tests[key] === 'function') {
+            let isValid = tests[key](value);
+
+            if (!isValid) {
+              return {
+                status: 'error',
+                errMsg: errMsgs && errMsgs[key] || 'Wrong Input'
+              };
+            }
+          }
+        }
+
+        return {
+          status: 'valid',
+          errMsg: ''
+        };
+      }
+    };
+
+    return defaultRes;
+  };
+
+  checkFormValid(force = false) {
+    let inputState = this.state.inputState;
+    let validation = this.props.validation;
+
+    for (let name in validation) {
+      let res = this.getValidationResult(name, force);
+      
+      if (!res.isValid) {
+        return false;
+      }
+    }
+
+    return true;
+  };
 
   handleSubmit(event) {
     this.setState((prevState, curProps) => {
@@ -120,8 +128,8 @@ class Form extends React.Component {
       event.preventDefault();
     }
     
-    if (typeof props.onSubmit === 'function') {
-      props.onSubmit(event);
+    if (typeof this.props.onSubmit === 'function') {
+      this.props.onSubmit(event);
     }
   };
 }

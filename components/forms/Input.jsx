@@ -11,11 +11,17 @@ class Input extends React.Component {
       className: ''
     })
 
-    let getValidationResult = this.context.FormMixin && this.context.FormMixin.getValidationResult || function() { return { isValid: true }; };
-    let validationRes = typeof getValidationResult === 'function' && getValidationResult(this.props.name);
-    if (!validationRes.isValid) {
-      classes.push('is-error');
-      errMsg = validationRes.errMsg;
+    let getValidationResult = this.context.FormMixin && this.context.FormMixin.getValidationResult;
+
+    if (typeof getValidationResult === 'function') {
+      let validationRes = getValidationResult(this.props.name);
+    
+      if (validationRes.status === 'valid') {
+        classes.push('is-valid');
+      } else if (validationRes.status === 'error') {
+        classes.push('is-error');
+        errMsg = validationRes.errMsg;
+      }
     }
 
     return (
