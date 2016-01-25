@@ -1,0 +1,57 @@
+.Gaia-navs-Nav {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  
+  ul {
+    display: flex;    
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      position: relative;
+      flex: 1 1 auto;
+      text-align: center;
+      color: #74777b;
+      font-weight: 700;
+      // margin: 0 10px;
+      padding: 10px 10px 13px 10px;
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: 0.2s color;
+      user-select: none;
+
+      &:after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 3px;
+        background-color: #d2d8d6;
+        transition: 0.2s background-color, 0.2s height;
+      }
+
+      &:hover {
+        &:after {
+          background-color: #b5bbb9;
+          height: 5px;
+        }
+      }
+
+      &+li {
+        margin-left: 20px;
+      }
+
+      &.is-selected {
+        color: #2cc185;
+        &:after {
+          background-color: #2cc185;
+          height: 5px;
+        }
+      }
+    }
+  }
+}

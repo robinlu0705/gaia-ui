@@ -6,8 +6,16 @@ class Submit extends React.Component {
     let checkFormValid = this.context.FormMixin && this.context.FormMixin.checkFormValid || function() { return true; };
     let isFormValid = checkFormValid();
     let attrDisabled = isFormValid && '' || 'disabled';
+    let inputClasses = ['Gaia-forms-Submit'].concat(this.props.className && this.props.className.split[' '] || []);
+    let inputProps = Object.assign({}, this.props, {
+      type: 'submit',
+      value: this.props.value,
+      disabled: !isFormValid,
+      className: inputClasses.join(' ')
+    });
+
     return (
-      <input type="submit" value="submit" className="Gaia-forms-Submit" disabled={!isFormValid} />
+      <input {...inputProps} />
     )
   }
 }

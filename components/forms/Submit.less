@@ -1,24 +1,45 @@
 .Gaia-forms-Submit {
+  position: relative;
   width: 100%;
   font-size: 1em;
-  padding: 10px;
+  padding: 12px 12px 12px 12px;
   letter-spacing: 1px;
   background-color: #fc6e51;
-  border: 2px solid #fc6e51;
+  border: 0;
+  border-bottom: 3px solid #bf2203;
   border-radius: 2px;
   color: #ffffff;
   text-align: center;
   vertical-align: middle;
-  border-bottom-color: #FC6E51;
   box-sizing: border-box;
+  user-select: none;
+  
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover {
+    top: 1px;
+    border-bottom: 2px solid #bf2203;
+  }
+
+  &:active {
+    border-bottom: 0;
+    top: 3px;
+    paddin-bottom: 13px;
+    outline: 0;
+  }
+
   &:disabled {
     background-color: #969596;
-    border: 1px solid #969596;
-    border-radius: 2px;
+    border-bottom: 0;
+    padding-bottom: 13px;
     color: #ffffff;
-    text-align: center;
-    vertical-align: middle;
-    border-bottom-color: #969596;
-    opacity: 0.3;
+    opacity: 0.4;
+    cursor: not-allowed;
+    &:hover {
+      top: 0;
+      border-bottom: 0;
+    }
   }
 }

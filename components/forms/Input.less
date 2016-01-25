@@ -1,3 +1,5 @@
+@import "../../helpers/Mixins.less";
+
 .form-msg-style() {
   visibility: hidden;
   line-height: 1;
@@ -8,36 +10,10 @@
   font-size: 0.875em;
 }
 
-.placeholder(@color) {
-  &::-webkit-input-placeholder { /* Safari, Chrome and Opera */
-    color: @color;
-  }
-
-  &:-moz-placeholder { /* Firefox 18- */
-    color: @color;
-  }
-
-  &::-moz-placeholder { /* Firefox 19+ */
-    color: @color;
-  }
-
-  &:-ms-input-placeholder { /* IE 10+ */
-    color: @color;
-  }
-
-  &::-ms-input-placeholder { /* Edge */
-    color: @color;
-  }
-
-  &:placeholder-shown { /* Standard one last! */
-    color: @color;
-  }
-}
-
 .Gaia-forms-Input {
   display: block;
   font-size: 1rem;
-  line-height: 1;
+  line-height: normal;
   position: relative;
   margin-bottom: 10px;
 
@@ -65,18 +41,32 @@
     }
   }
 
+  .input-wrap {
+    display: flex;
+  }
+
+  .label {
+    position: relative;
+    right: -3px;
+    padding: 13px 13px 13px 13px;
+    flex: 0 1 auto;
+    background-color: #9f9f9f;
+    color: white;
+  }
+
   input {
+    flex: 0 1 auto;
     outline: 0;
     border: 2px solid #bababa;
     border-radius: 2px;
-    padding: 10px;
+    padding: 11px;
     appearance: none;
     width: 100%;
     background-color: white;
+    color: #41464c;
     display: inline-block;
     box-sizing: border-box;
     font-size: 1em;
-    transition: 0.2s border-color;
 
     &[disabled] {
       cursor: not-allowed;
@@ -84,10 +74,11 @@
     }
 
     &:focus {
-      border-color: #999;
+      border-color: #9f9f9f;
+      box-shadow: inset 0 0 0 1px #9f9f9f;
     }
 
-    .placeholder(#aaa);
+    .placeholder(#c4c4c4);
   }
 
   .msg {
