@@ -10,7 +10,7 @@ class Submit extends React.Component {
     let inputProps = Object.assign({}, this.props, {
       type: 'submit',
       value: this.props.value,
-      disabled: !isFormValid,
+      disabled: this.props.disabled || !isFormValid,
       className: inputClasses.join(' ')
     });
 

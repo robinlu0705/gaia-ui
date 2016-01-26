@@ -46,14 +46,14 @@ class Input extends React.Component {
 
   handleChange(event) {
     let notifyChange = this.context.FormMixin && this.context.FormMixin.notifyChange;
-    let onChange = this.props.onChange;
+    let customChange = this.props.customChange;
     
     if (this.props.name && typeof notifyChange === 'function') {
       notifyChange(this.props.name, event.target.value);
     }
 
-    if (typeof onChange === 'function') {
-      onChange(event);
+    if (typeof customChange === 'function') {
+      customChange(event.target.value);
     }
   }
 }

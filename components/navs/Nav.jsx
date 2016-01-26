@@ -1,28 +1,38 @@
 import {} from './Nav.less';
 import React from 'react';
 
-let Nav = (props) => {
-  let tabs = props.tabs || [];
-  let selected = props.selected;
-  let list = [];
-  
+class Nav extends React.Component {
+  render() {
+    let tabs = this.props.tabs || {};
+    let selected = this.props.selected;
+    let list = [];
+    
 
-  tabs.forEach((tab, idx) => {
-    let className = idx === selected ? 'is-selected' : '';
-    let item = (
-      <li key={idx} className={className}>{tab}</li>
+    for (let key in tabs) {
+      let tab = tabs[key];
+      let className = key === selected ? 'is-selected' : '';
+      let item = (
+        <li key={key} className={className} onClick={this.handleItemClick.bind(this, key)}>{tab}</li>
+      );
+
+      list.push(item);
+    };
+
+    return (
+      <nav className="Gaia-navs-Nav">
+        <ul>
+          {list}
+        </ul>
+      </nav>
     );
+  }
 
-    list.push(item);
-  });
-
-  return (
-    <nav className="Gaia-navs-Nav">
-      <ul>
-        {list}
-      </ul>
-    </nav>
-  );
+  handleItemClick(key) {
+    let customChange = this.props.customChange;
+    if (typeof customChange === 'function') {
+      customChange(key);
+    }
+  }
 }
 
 export default Nav;
