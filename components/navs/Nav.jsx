@@ -27,6 +27,11 @@ class Nav extends React.Component {
     );
   }
 
+  constructor(props) {
+    super(props);
+    this.handleItemClick = this.handleItemClick.bind(this);
+  }
+
   handleItemClick(key) {
     let customChange = this.props.customChange;
     if (typeof customChange === 'function') {

@@ -8,7 +8,7 @@ class Input extends React.Component {
     let errMsg = '';
     let inputProps = Object.assign({}, this.props, {
       type: 'text',
-      onChange: this.handleChange.bind(this),
+      onChange: this.handleChange,
       className: ''
     })
 
@@ -34,6 +34,11 @@ class Input extends React.Component {
         <div className="msg">{errMsg}</div>
       </div>
     );
+  }
+
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {

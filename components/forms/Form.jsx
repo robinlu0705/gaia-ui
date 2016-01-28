@@ -3,7 +3,7 @@ import React from 'react';
 class Form extends React.Component {
   render() {
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
+      <form onSubmit={this.handleSubmit}>
         {this.props.children}
       </form>
      )
@@ -14,6 +14,8 @@ class Form extends React.Component {
     this.state = {
       inputState: {}
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   getChildContext() {
