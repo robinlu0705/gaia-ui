@@ -13,7 +13,7 @@ export var Grid = (props) => {
   return (
     <div {...newProps}>{props.children}</div>
   )
-}
+};
 
 export Col from './Col';
 export Row from './Row';

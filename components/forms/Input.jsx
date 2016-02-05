@@ -3,7 +3,6 @@ import React from 'react';
 
 class Input extends React.Component {
   render() {
-    let label = this.props.label && <div className="label">{this.props.label}</div>;
     let classes = ['Gaia-forms-Input'].concat(this.props.className && this.props.className.split(' ') || []);
     let errMsg = '';
     let inputProps = Object.assign({}, this.props, {
@@ -27,10 +26,7 @@ class Input extends React.Component {
 
     return (
       <div className={classes.join(' ')}>
-        <div className="input-wrap">
-          {label}
-          <input {...inputProps} />
-        </div>
+        <input {...inputProps} />
         <div className="msg">{errMsg}</div>
       </div>
     );
