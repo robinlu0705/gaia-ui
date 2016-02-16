@@ -3,11 +3,12 @@
   top: -3px;
   width: 100%;
   font-size: 1em;
+  font-size: 1rem;
   padding: 9px;
   letter-spacing: 1px;
   background-color: #fc6e51;
   border: 0;
-  border-bottom: 3px solid #bf2203;
+  box-shadow: 0 3px 0 0 #bf2203;
   border-radius: 2px;
   color: #ffffff;
   text-align: center;
@@ -21,11 +22,11 @@
 
   &:hover {
     top: -2px;
-    border-bottom: 2px solid #bf2203;
+    box-shadow: 0 2px 0 0 #bf2203;
   }
 
   &:active {
-    border-bottom: 0;
+    box-shadow: none;
     top: 0px;
     outline: 0;
   }
@@ -33,7 +34,7 @@
   &:disabled {
     top: 0;
     background-color: #969596;
-    border-bottom: 0;
+    box-shadow: none;
     color: #ffffff;
     opacity: 0.4;
     cursor: not-allowed;

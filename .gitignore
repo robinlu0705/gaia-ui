@@ -1,4 +1,5 @@
 node_modules/
-styleguide/
+styleguide/*
+!styleguide/files/
 npm-debug.log
 test-results.xml

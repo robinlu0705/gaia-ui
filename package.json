@@ -39,6 +39,7 @@
     "react": "^0.14.5",
     "react-addons-test-utils": "^0.14.5",
     "react-dom": "^0.14.5",
+    "react-element-to-jsx-string": "^2.4.0",
     "react-styleguide-generator": "^1.2.1",
     "style-loader": "^0.13.0"
   }

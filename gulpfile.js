@@ -27,7 +27,10 @@ gulp.task('styleguide:build', [], function(done) {
         ["node-lessify", {"textMode": false }]
       ]
     },
-    pushstate: false
+    pushstate: false,
+    files: [
+      'files/global.css'
+    ]
   });
 
   rsg.generate(function (err) {
