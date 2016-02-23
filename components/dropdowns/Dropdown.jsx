@@ -16,7 +16,7 @@ class Dropdown extends React.Component {
     });
 
     this.state = {
-      isFolded: false,
+      isFolded: true,
       value: value
     };
 
@@ -27,8 +27,9 @@ class Dropdown extends React.Component {
 
   render() {
     let { value, isFolded } = this.state;
-    let { options, className } = this.props;
+    let { options, className, skin } = this.props;
     let classes = ['Gaia-dropdowns-Dropdown']
+      .concat(skin ? `skin-${skin}` : [])
       .concat(isFolded ? 'is-folded' : [])
       .concat(className ? className.split(' ') : []);
 

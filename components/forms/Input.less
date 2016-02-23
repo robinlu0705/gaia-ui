@@ -1,12 +1,12 @@
 @import "../../helpers/Mixins.less";
 @import "../../helpers/Variables.less";
 
-.form-msg-style() {
+.Gaia-forms-Input-error-msg-mixin() {
   visibility: hidden;
   height: 1em;
-  margin-top: 0.5em;
+  margin-top: 6px;
   margin-left: 2px;
-  color: #cc2020;
+  color: @input-color-error;
   font-size: 0.875em;
 }
 
@@ -16,23 +16,24 @@
   font-size: 1rem;
   position: relative;
   margin-bottom: 10px;
+  letter-spacing: 1px;
 
   &.is-valid {
     input {
-      border-color: #409240;
+      border-color: @input-border-valid;
 
       &:focus {
-        border-color: #409240;
+        border-color: @input-border-valid;
       }
     }
   }
 
   &.is-error {
     input {
-      border-color: #cc2020;
+      border-color: @input-border-error;
 
       &:focus {
-        border-color: #cc2020;
+        border-color: @input-border-error;
       }
     }
 
@@ -41,39 +42,31 @@
     }
   }
 
-  .label {
-    position: relative;
-    right: -3px;
-    padding: 13px 13px 13px 13px;
-    flex: 0 1 auto;
-    background-color: #9f9f9f;
-    color: white;
-  }
-
   input {
     flex: 0 1 auto;
     outline: 0;
-    border: 2px solid #bababa;
+    border: 1px solid @input-border;
     border-radius: 2px;
-    padding: 7px 12px;
+    padding: @input-padding-v @input-padding-h;
     appearance: none;
     width: 100%;
-    background-color: white;
-    color: @text-color;
+    background-color: @input-bg;
+    color: @input-color;
     display: inline-block;
     box-sizing: border-box;
     font-size: 1em;
 
     &[disabled] {
       cursor: not-allowed;
-      background-color: #f0f0f0;
+      background-color: @input-bg-disabled;
+      opacity: 0.4;
     }
 
     &:focus {
-      border-color: #9f9f9f;
+      border-color: @input-border;
     }
 
-    .placeholder(#c4c4c4);
+    .placeholder(@input-placeholder);
 
     .Gaia-forms-InputGroup & {
       border-radius: 0;
@@ -81,7 +74,7 @@
   }
 
   .msg {
-    .form-msg-style();
+    .Gaia-forms-Input-error-msg-mixin();
   }
 }
 
@@ -165,6 +158,6 @@
   }
 
   .msg {
-    .form-msg-style();
+    .Gaia-forms-Input-error-msg-mixin();
   }
 }

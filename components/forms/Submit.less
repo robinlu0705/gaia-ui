@@ -1,47 +1,58 @@
-.Gaia-forms-Submit {
+@import "../../helpers/Variables.less";
+
+.Gaia-button-mixin(@padding-v, @padding-h, @bg, @color, @border, @disabled) {
   position: relative;
-  top: -3px;
   width: 100%;
   font-size: 1em;
   font-size: 1rem;
-  padding: 9px;
+  background-color: @bg;
+  color: @color;
+  border: 1px solid @border;
+  padding: @padding-v @padding-h;
   letter-spacing: 1px;
-  background-color: #fc6e51;
-  border: 0;
-  box-shadow: 0 3px 0 0 #bf2203;
-  border-radius: 2px;
-  color: #ffffff;
+  border-radius: 3px;
   text-align: center;
   vertical-align: middle;
   box-sizing: border-box;
   user-select: none;
-  
+
   &:focus {
     outline: 0;
   }
 
   &:hover {
-    top: -2px;
-    box-shadow: 0 2px 0 0 #bf2203;
+    border: 1px solid darken(@border, 5%, relative);
+    background-color: darken(@bg, 5%, relative);
   }
 
   &:active {
-    box-shadow: none;
-    top: 0px;
-    outline: 0;
+    border: 1px solid darken(@border, 10%, relative);
+    background-color: darken(@bg, 10%, relative);
   }
 
   &:disabled {
-    top: 0;
-    background-color: #969596;
-    box-shadow: none;
-    color: #ffffff;
+    border: 1px solid @disabled;
+    background-color: @disabled;
     opacity: 0.4;
-    cursor: not-allowed;
-    &:hover {
-      top: 0;
-      border-top: 0;
-      border-bottom: 0;
-    }
+  }
+}
+
+.Gaia-forms-Submit {
+  .Gaia-button-mixin(@input-button-padding-v, @input-button-padding-h, @input-button-bg, @input-button-color, @input-button-border, @input-button-disabled);
+  
+  &.skin-primary {
+    .Gaia-button-mixin(@input-button-padding-v, @input-button-padding-h, @chroma-primary, #fff, @chroma-primary, @chroma-primary);
+  }
+
+  &.skin-contrast {
+    .Gaia-button-mixin(@input-button-padding-v, @input-button-padding-h, @chroma-contrast, #fff, @chroma-contrast, @chroma-contrast);
+  }
+
+  &.skin-secondary {
+    .Gaia-button-mixin(@input-button-padding-v, @input-button-padding-h, @chroma-secondary, #fff, @chroma-secondary, @chroma-secondary);
+  }
+
+  &.skin-tertiary {
+    .Gaia-button-mixin(@input-button-padding-v, @input-button-padding-h, @chroma-tertiary, #fff, @chroma-tertiary, @chroma-tertiary);
   }
 }

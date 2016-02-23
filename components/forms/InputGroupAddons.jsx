@@ -13,7 +13,11 @@ export var InputGroupLabel = (props) => {
 };
 
 export var InputGroupButton = (props) => {
-  let classes = ['Gaia-forms-InputGroupButton'].concat(props.className ? props.className.split(' ') : []);
+  let { skin, className } = props;
+  let classes = ['Gaia-forms-InputGroupButton']
+    .concat(skin ? `skin-${skin}` : [])
+    .concat(className ? className.split(' ') : []);
+    
   let newProps = Object.assign({}, props, {
     type: 'button',
     className: classes.join(' ')

@@ -3,10 +3,14 @@ import React from 'react';
 
 class Submit extends React.Component {
   render() {
+    let { className, skin } = this.props;
     let checkFormValid = this.context.FormMixin && this.context.FormMixin.checkFormValid || function() { return true; };
     let isFormValid = checkFormValid();
     let attrDisabled = isFormValid && '' || 'disabled';
-    let inputClasses = ['Gaia-forms-Submit'].concat(this.props.className && this.props.className.split[' '] || []);
+    let inputClasses = ['Gaia-forms-Submit']
+      .concat(skin ? `skin-${skin}` : [])
+      .concat(className ? className.split[' '] : []);
+      
     let inputProps = Object.assign({}, this.props, {
       type: 'submit',
       value: this.props.value,
