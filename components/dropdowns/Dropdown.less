@@ -1,0 +1,181 @@
+@import "../../helpers/Variables.less";
+
+@local-hightLight: rgba(255, 255, 255, 0.7);
+@local-edge: rgba(0, 0, 0, 0.2);
+
+.local-list-mixin(@bg, @color) {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  background-color: @bg;
+  border: 1px solid @local-edge;
+  border-top: 0;
+  box-shadow: 0px -1px 0px 0px @local-hightLight inset, 0px 0px 8px 2px rgba(0,0,0,0.3);
+  padding-bottom: 4px;
+  color: @color;
+  
+  > ul {
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    max-height: 225px;
+    overflow-y: auto;
+    transition: max-height 0.2s linear;
+    
+    li {
+      padding: 8px 12px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+
+    li:first-child {
+      margin-top: 8px;
+    }
+
+    li:last-child {
+      margin-bottom: 13px;
+    }
+  }
+
+  > .triangle {
+    position: absolute;
+    display: inline-block;
+    bottom: 0;
+    font-size: 0;
+
+    &:after {
+      display: inline-block;
+      content: '';
+      position: relative;
+      left: -50%;
+      bottom: -5px;
+      width: 8px;
+      height: 8px;
+      background-color: @bg;
+      border-top-right-radius: 2px;
+      border-bottom-left-radius: 2px;
+      border-bottom-right-radius: 4px;
+      transform: scaleX(1.8) rotateZ(45deg) ;
+      border-right: 1px solid @local-edge;
+      border-bottom: 1px solid @local-edge;
+      box-shadow: -1px -1px 0px 0px @local-hightLight inset;
+    }
+  }
+
+  > .circle {
+    position: absolute;
+    display: inline-block;
+    bottom: 0;
+    font-size: 0;
+
+    &:after {
+      display: inline-block;
+      content: '';
+      position: relative;
+      bottom: -2px;
+      left: -50%;
+      width: 9px;
+      height: 9px;
+      box-sizing: border-box;
+      background-color: @bg;
+      border: 1px solid @bg;
+      border-radius: 100%;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2) inset, 0 0 0 7px white inset, 0 -1px 0 0 @local-hightLight;
+    }
+  }
+}
+
+.Gaia-dropdowns-Dropdown {
+  position: relative;
+  z-index: 8;
+  margin-bottom: 28px;
+  user-select: none;
+  letter-spacing: 1px;
+  font-size: 1em;
+  font-size: 1rem;
+
+  &.is-folded.is-folded.is-folded {
+    .list {
+      box-shadow: 0px -1px 0px 0px @local-hightLight inset;
+    }
+
+    .list ul {
+      max-height: 0;
+      overflow: hidden;
+    }
+
+    .value {
+      box-shadow: none;
+
+      .clickable-area {
+        bottom: -10px;
+      }
+    }
+  }
+
+  .value {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: @dropdown-padding-v @dropdown-padding-h;
+    border: 1px solid @dropdown-border;
+    text-align: center;
+    border-radius: 2px;
+    color: @dropdown-color;
+    background-color: @dropdown-bg;
+    position: relative;
+    box-shadow: 0 3px 8px -2px rgba(0,0,0,0.4);
+
+    .clickable-area {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
+
+  .list-pivot {
+    position: absolute;
+    bottom: 0;
+    left: 4px;
+    right: 4px;
+    height: 0;
+    z-index: -1;
+    transition: bottom 0.1s linear;
+  }
+
+  .list {
+    .local-list-mixin(@dropdown-list-bg, @dropdown-list-color);
+  }
+
+  &.skin-primary .list {
+    .local-list-mixin(@chroma-primary, hsl(0, 0%, 100%));
+  }
+
+  &.skin-contrast .list {
+    .local-list-mixin(@chroma-contrast, hsl(0, 0%, 100%));
+  }
+
+  &.skin-secondary .list {
+    .local-list-mixin(@chroma-secondary, hsl(0, 0%, 100%));
+  }
+
+  &.skin-tertiary .list {
+    .local-list-mixin(@chroma-tertiary, hsl(0, 0%, 100%));
+  }
+
+  select {
+    display: none;
+  }
+}

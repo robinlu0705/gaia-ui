@@ -1,22 +1,37 @@
+@import "../../helpers/Variables.less";
+
 .Gaia-forms-InputGroupLabel {
   font-size: 1em;
   font-size: 1rem;
-  padding: 9px 12px;
-  background-color: #797a86;
-  color: white;
+  padding: @input-group-label-padding-v @input-group-label-padding-h;
+  border: 1px solid @input-group-label-border;
+  border-right: 0;
+  background-color: @input-group-label-bg;
+  color: @input-group-label-color;
+  letter-spacing: 1px;
+  position: relative;
+
+  &:after {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 2px;
+    bottom: 2px;
+    border-right: 1px solid @input-group-label-border;
+  }
 }
 
-.Gaia-forms-InputGroupButton {
+.local-button-mixin(@padding-v, @padding-h, @bg, @color, @border, @disabled) {
   position: relative;
   display: block;
   font-size: 1em;
   font-size: 1rem;
-  padding: 9px 14px;
+  padding: @padding-v @padding-h;
   letter-spacing: 1px;
-  background-color: hsl(554, 50%, 54%);
-  border: 0;
-  background-image: linear-gradient(to top, hsl(554, 50%, 50%) 0%, hsl(554, 50%, 58%) 100%);
-  color: #ffffff;
+  background-color: @bg;
+  color: @color;
+  border: 1px solid @border;
   text-align: center;
   vertical-align: middle;
   box-sizing: border-box;
@@ -26,14 +41,37 @@
     outline: 0;
   }
 
+  &:hover {
+    background-color: darken(@bg, 5%, relative);
+  }
+
   &:active {
-    background-image: linear-gradient(to top, hsl(554, 50%, 58%) 0%, hsl(554, 50%, 50%) 100%);
+    background-color: darken(@bg, 10%, relative);
   }
 
   &:disabled {
-    background-color: #969596;
-    color: #ffffff;
+    background-color: @disabled;
     opacity: 0.4;
     cursor: not-allowed;
+  }
+}
+
+.Gaia-forms-InputGroupButton {
+  .local-button-mixin(@input-group-button-padding-v, @input-group-button-padding-h, @input-group-button-bg, @input-group-button-color, @input-group-button-border, @input-group-button-disabled);
+
+  &.skin-primary {
+    .local-button-mixin(@input-group-button-padding-v, @input-group-button-padding-h, @chroma-primary, #fff, @chroma-primary, @chroma-primary);
+  }
+
+  &.skin-contrast {
+    .local-button-mixin(@input-group-button-padding-v, @input-group-button-padding-h, @chroma-contrast, #fff, @chroma-contrast, @chroma-contrast);
+  }
+
+  &.skin-secondary {
+    .local-button-mixin(@input-group-button-padding-v, @input-group-button-padding-h, @chroma-secondary, #fff, @chroma-secondary, @chroma-secondary);
+  }
+
+  &.skin-tertiary {
+    .local-button-mixin(@input-group-button-padding-v, @input-group-button-padding-h, @chroma-tertiary, #fff, @chroma-tertiary, @chroma-tertiary);
   }
 }
