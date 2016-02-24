@@ -29,7 +29,7 @@ Submit.contextTypes = {
 };
 
 Submit.propTypes = {
-  onSubmit: React.PropTypes.func
+  onClick: React.PropTypes.func
 };
 
 export default Submit;

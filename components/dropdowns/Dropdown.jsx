@@ -87,7 +87,6 @@ class Dropdown extends React.Component {
   }
 
   handleBtnClick(event) {
-    console.log('click');
     this.setState((prevState, curProps) => {
       return Object.assign({}, prevState, {
         isFolded: !prevState.isFolded
@@ -96,19 +95,33 @@ class Dropdown extends React.Component {
   }
 
   handleSelectChange(event) {
-    console.log(event.target.value);
     this.setState({
       value: event.target.value
     });
   }
 
   handleDropdownItemClick(val) {
-    console.log(val);
-    this.setState({
-      isFolded: true,
-      value: val
+    let onChangeCB = this.props.onChange;
+    this.setState((prevState, curProps) => {
+      if (onChangeCB && typeof onChangeCB === 'function') {
+        onChangeCB(val);
+      }
+      return {
+        isFolded: true,
+        value: val
+      };
     });
   }
+};
+
+Dropdown.propTypes = {
+  skin: React.PropTypes.string,
+  value: React.PropTypes.string,
+  options: React.PropTypes.arrayOf(React.PropTypes.shape({
+    text: React.PropTypes.string,
+    value: React.PropTypes.string.isRequired
+  })),
+  onChange: React.PropTypes.func
 };
 
 export default Dropdown;
