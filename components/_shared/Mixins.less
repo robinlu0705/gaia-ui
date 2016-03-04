@@ -1,0 +1,36 @@
+.Gaia-button-mixin(@padding-v, @padding-h, @bg, @color, @border, @disabled) {
+  position: relative;
+  width: 100%;
+  font-size: 1em;
+  font-size: 1rem;
+  background-color: @bg;
+  color: @color;
+  border: 1px solid @border;
+  padding: @padding-v @padding-h;
+  letter-spacing: 1px;
+  border-radius: 3px;
+  text-align: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+  user-select: none;
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:hover {
+    border: 1px solid darken(@border, 3%, relative);
+    background-color: darken(@bg, 3%, relative);
+  }
+
+  &:active {
+    border: 1px solid darken(@border, 6%, relative);
+    background-color: darken(@bg, 6%, relative);
+  }
+
+  &:disabled {
+    border: 1px solid @disabled;
+    background-color: @disabled;
+    opacity: 0.4;
+  }
+}
