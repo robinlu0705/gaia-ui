@@ -1,22 +1,22 @@
-@import "../_shared/Variables.less";
-@import "../_shared/Mixins.less";
+@import "../../helpers/Variables.less";
+@import "../../helpers/Mixins.less";
 
 .Gaia-forms-Submit {
-  .Gaia-button-mixin(@button-padding-v, @button-padding-h, @button-bg, @button-color, @button-border, @button-disabled);
+  .buttonHelper(@button-padding-v, @button-padding-h, @button-bg, @button-color, @button-border, @button-disabled);
   
   &.skin-primary {
-    .Gaia-button-mixin(@button-padding-v, @button-padding-h, @chroma-primary, #fff, @chroma-primary, @chroma-primary);
+    .buttonHelper(@button-padding-v, @button-padding-h, @chroma-primary, #fff, @chroma-primary, @chroma-primary);
   }
 
   &.skin-contrast {
-    .Gaia-button-mixin(@button-padding-v, @button-padding-h, @chroma-contrast, #fff, @chroma-contrast, @chroma-contrast);
+    .buttonHelper(@button-padding-v, @button-padding-h, @chroma-contrast, #fff, @chroma-contrast, @chroma-contrast);
   }
 
   &.skin-secondary {
-    .Gaia-button-mixin(@button-padding-v, @button-padding-h, @chroma-secondary, #fff, @chroma-secondary, @chroma-secondary);
+    .buttonHelper(@button-padding-v, @button-padding-h, @chroma-secondary, #fff, @chroma-secondary, @chroma-secondary);
   }
 
   &.skin-tertiary {
-    .Gaia-button-mixin(@button-padding-v, @button-padding-h, @chroma-tertiary, #fff, @chroma-tertiary, @chroma-tertiary);
+    .buttonHelper(@button-padding-v, @button-padding-h, @chroma-tertiary, #fff, @chroma-tertiary, @chroma-tertiary);
   }
 }
