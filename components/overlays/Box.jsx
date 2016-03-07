@@ -4,18 +4,8 @@ import Button from '../buttons/Button';
 import { Grid, Col, Row } from 'Gaia/components/grid/Grid';
 
 class Box extends React.Component {
-  // constructor(props) {
-  //   super(props);
-
-  //   let { isOpened } = props;
-  //   this.state = {
-  //     isOpened
-  //   };
-  // }
-
   render() {
     let { className, title, content, isOpened, onClose, width, minWidth } = this.props;
-    // let { isOpened } = this.state;
     let classes = ['Gaia-overlays-Box']
       .concat(isOpened ? [] : ['is-closed']);
     let dialogStyle = { width, minWidth };
@@ -41,6 +31,21 @@ class Box extends React.Component {
       </div>
     );
   }
+};
+
+Box.propTypes = {
+  title: React.PropTypes.oneOfType([
+    React.PropTypes.element,
+    React.PropTypes.string
+  ]),
+  content: React.PropTypes.oneOfType([
+    React.PropTypes.element,
+    React.PropTypes.string
+  ]),
+  isOpened: React.PropTypes.bool,
+  onClose: React.PropTypes.func,
+  width: React.PropTypes.string,
+  maxWidth: React.PropTypes.string
 };
 
 export default Box;
