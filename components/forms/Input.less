@@ -2,7 +2,7 @@
 @import "../../helpers/Variables.less";
 
 .Gaia-forms-Input-error-msg-mixin() {
-  visibility: hidden;
+  display: none;
   height: 1em;
   margin-top: 6px;
   margin-left: 2px;
@@ -15,7 +15,6 @@
   font-size: 1em;
   font-size: 1rem;
   position: relative;
-  margin-bottom: 10px;
   letter-spacing: 1px;
 
   &.is-valid {
@@ -38,7 +37,7 @@
     }
 
     .msg {
-      visibility: visible;
+      display: block;
     }
   }
 
