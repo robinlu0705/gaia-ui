@@ -34,6 +34,8 @@ class Box extends React.Component {
 };
 
 Box.propTypes = {
+  width: React.PropTypes.string.isRequired,
+  minWidth: React.PropTypes.string,
   title: React.PropTypes.oneOfType([
     React.PropTypes.element,
     React.PropTypes.string
@@ -44,8 +46,6 @@ Box.propTypes = {
   ]),
   isOpened: React.PropTypes.bool,
   onClose: React.PropTypes.func,
-  width: React.PropTypes.string,
-  maxWidth: React.PropTypes.string
 };
 
 export default Box;
