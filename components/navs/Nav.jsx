@@ -33,9 +33,9 @@ class Nav extends React.Component {
   }
 
   handleItemClick(key) {
-    let customChange = this.props.customChange;
-    if (typeof customChange === 'function') {
-      customChange(key);
+    let onChange = this.props.onChange;
+    if (typeof onChange === 'function') {
+      onChange(key);
     }
   }
 }

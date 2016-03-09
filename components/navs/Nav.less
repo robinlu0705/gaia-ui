@@ -1,3 +1,5 @@
+@import "../../helpers/Variables.less";
+
 .Gaia-navs-Nav {
   display: block;
   width: 100%;
@@ -46,9 +48,9 @@
       }
 
       &.is-selected {
-        color: #2cc185;
+        color: @chroma-primary; 
         &:after {
-          background-color: #2cc185;
+          background-color: @chroma-primary;
           height: 5px;
         }
       }
