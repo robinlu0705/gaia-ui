@@ -1,0 +1,23 @@
+@import "../../helpers/Variables.less";
+
+.Gaia-navs-Pagination {
+  display: inline-block;
+  padding: 0;
+
+  li {
+    display: inline;
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 3px;
+    cursor: pointer;
+    &.active {
+      background-color: @chroma-primary;
+      color: @gray-base;
+    }
+    &:hover:not(.active) {
+      background-color: @gray-lighter;
+    }
+  }
+}

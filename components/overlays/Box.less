@@ -9,7 +9,11 @@
   }
 
   > .overlay {
-    display: flex;
+    //
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: block;
+    // display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -28,6 +32,8 @@
       text-align: left;
       background-color: #fff;
       border-radius: 3px;
+      //
+      margin: 100px auto;
 
       > .title {
         padding: 15px 20px;
