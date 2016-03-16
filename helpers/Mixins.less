@@ -1,3 +1,4 @@
+// mixins for HelperStyle.less
 .clearfix() {
   &:before,
   &:after {
@@ -9,6 +10,57 @@
   }
 }
 
+.pull-left() {
+  float: left !important;
+}
+
+.pull-right() {
+  float: right !important;
+}
+
+.marg-1-bottom() {
+  margin-bottom: 15px;
+}
+
+.marg-2-bottom() {
+  margin-bottom: 30px;
+}
+
+.marg-1-top() {
+  margin-top: 15px;
+}
+
+.marg-2-top() {
+  margin-top: 30px;
+}
+
+.h1() {
+  font-size: 5em;
+}
+
+.h2() {
+  font-size: 2.5em;
+}
+
+.h3() {
+  font-size: 1.75em;
+}
+
+.h4() {
+  font-size: 1.375em;
+}
+
+.h5() {
+  font-size: 1.2em;
+}
+
+.h6() {
+  font-size: 1em;
+}
+
+
+
+// pure mixins
 .placeholder(@color) {
   &::-webkit-input-placeholder { /* Safari, Chrome and Opera */
     color: @color;
