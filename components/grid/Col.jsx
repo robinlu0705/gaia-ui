@@ -11,16 +11,19 @@ let Col = (props) => {
       classes.push('col-' + size + '-' + props[size]);
     }
 
-    if (props[size + 'Offset'] > 0) {
-      classes.push('col-' + size + '-offset-' + props[size]);
+    let offset = size + 'Offset';
+    if (props[offset] > 0) {
+      classes.push('col-' + size + '-offset-' + props[offset]);
     }
 
-    if (props[size + 'Push'] > 0) {
-      classes.push('col-' + size + '-push-' + props[size]);
+    let push = size + 'Push';
+    if (props[push] > 0) {
+      classes.push('col-' + size + '-push-' + props[push]);
     }
 
-    if (props[size + 'Pull'] > 0) {
-      classes.push('col-' + size + '-pull-' + props[size]);
+    let pull = size + 'Pull';
+    if (props[pull] > 0) {
+      classes.push('col-' + size + '-pull-' + props[pull]);
     }
   });
 
