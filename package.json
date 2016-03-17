@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-styleguide": "gulp build-styleguide",
-    "karma-test": "karma start"
+    "karma-test": "karma start",
+    "styleguide-watch": "styleguidist server",
+    "styleguide-build": "styleguidist build"
   },
   "author": "",
   "license": "ISC",
@@ -34,13 +35,11 @@
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
     "mocha": "^2.3.4",
-    "node-lessify": "^0.1.1",
     "phantomjs": "^1.9.19",
     "react": "^0.14.5",
     "react-addons-test-utils": "^0.14.5",
     "react-dom": "^0.14.5",
-    "react-element-to-jsx-string": "^2.4.0",
-    "react-styleguide-generator": "^1.2.1",
+    "react-styleguidist": "^2.1.0",
     "style-loader": "^0.13.0"
   }
 }

@@ -1,0 +1,48 @@
+"use strict";
+
+var path = require('path');
+
+module.exports = {
+  serverHost: '0.0.0.0',
+  serverPort: '3000',
+  title: 'Gaia Style Guide',
+  components: './components/*/*.jsx',
+  getExampleFilename: function(componentpath) {
+    return componentpath.replace(/\.jsx?$/,   '.examples.md');
+  },
+
+  updateWebpackConfig: function(webpackConfig, env) {
+    // Your source files folder or array of folders, should not include node_modules
+    let dir = path.join(__dirname, 'components');
+  
+    webpackConfig.module.loaders.push(
+      // Babel loader will use your project’s .babelrc
+      {
+        test: /\.jsx?$/,
+        include: dir,
+        exclude: /node_modules/,
+        loader: 'babel',
+        query: {
+          // https://github.com/babel/babel-loader#options
+          cacheDirectory: '',
+          presets: [
+            'es2015',
+            'react',
+            'stage-0'
+          ],
+          plugins: [
+            ["transform-object-assign"]
+          ]
+        }
+      },
+      // Other loaders that is needed for your components
+      {
+        test: /\.less$/,
+        include: dir,
+        loader: "style-loader!css-loader!less-loader"
+      }
+    );
+
+    return webpackConfig;
+  }
+};

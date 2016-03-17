@@ -6,8 +6,8 @@ An in-house React UI framework
 1. `npm install` - install all node_modules needed
 
 ## Gaia Styleguide
-1. `npm run build-styleguide` - build component styleguide into `/styleguide`
-2. visit `/styleguide` to see the styleguide page
+1. `npm run styleguide-build` - build component styleguide into `/styleguide`
+2. `npm run styleguide-watch` - start a dev-server at port 3000
 
 ## Unit tests
 1. unit tests using Karma(along with Mocha or Jasmine) are in `/components/**/__karma-tests__`. Switch framework by changing `frameworkName` variable in `karma.conf.js`
