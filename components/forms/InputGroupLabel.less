@@ -1,0 +1,23 @@
+@import "../../helpers/Variables.less";
+
+.Gaia-forms-InputGroupLabel {
+  font-size: 1em;
+  font-size: 1rem;
+  padding: @input-group-label-padding-v @input-group-label-padding-h;
+  border: 1px solid @input-group-label-border;
+  border-right: 0;
+  background-color: @input-group-label-bg;
+  color: @input-group-label-color;
+  letter-spacing: 1px;
+  position: relative;
+
+  &:after {
+    display: inline-block;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 2px;
+    bottom: 2px;
+    border-right: 1px solid @input-group-label-border;
+  }
+}

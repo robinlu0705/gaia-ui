@@ -1,18 +1,7 @@
-import {} from './InputGroupAddons.less';
+import {} from './InputGroupButton.less';
 import React from 'react';
 
-export var InputGroupLabel = (props) => {
-  let classes = ['Gaia-forms-InputGroupLabel'].concat(props.className ? props.className.split(' ') : []);
-  let newProps = Object.assign({}, props, {
-    className: classes.join(' ')
-  });
-
-  return (
-    <div {...newProps}>{props.children}</div>
-  );
-};
-
-export var InputGroupButton = (props) => {
+let InputGroupButton = (props) => {
   let { skin, className } = props;
   let classes = ['Gaia-forms-InputGroupButton']
     .concat(skin ? `skin-${skin}` : [])
@@ -27,3 +16,5 @@ export var InputGroupButton = (props) => {
     <button {...newProps}>{props.children}</button>
   );
 };
+
+export default InputGroupButton;
