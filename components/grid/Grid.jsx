@@ -1,7 +1,7 @@
 import {} from './Grid.less';
 import React from 'react';
 
-export var Grid = (props) => {
+let Grid = (props) => {
   let classes = props.className && props.className.split(' ') || [];
   let newProps;
 
@@ -15,5 +15,4 @@ export var Grid = (props) => {
   )
 };
 
-export Col from './Col';
-export Row from './Row';
+export default Grid;

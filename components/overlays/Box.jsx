@@ -1,7 +1,7 @@
 import {} from './Box.less';
 import React from 'react';
 import Button from '../buttons/Button';
-import { Grid, Col, Row } from 'Gaia/components/grid/Grid';
+import { Grid, Col, Row } from '../grid';
 
 class Box extends React.Component {
   render() {
