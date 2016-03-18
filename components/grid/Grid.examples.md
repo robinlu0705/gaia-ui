@@ -1,3 +1,7 @@
+Powered by [Bootstrap](http://getbootstrap.com/css/#grid).
+
+Inspired by [React-Bootstrap](https://react-bootstrap.github.io/components.html#page-layout).
+
     let colStyle = {
       backgroundColor: 'rgba(86,61,124,.15)',
       border: '1px solid rgba(86,61,124,.2)',

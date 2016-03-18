@@ -45,6 +45,9 @@ Box.propTypes = {
     React.PropTypes.string
   ]),
   isOpened: React.PropTypes.bool,
+  /**
+   * invoked when user triggers an exit-behavior like clicking at outside of the box
+   */
   onClose: React.PropTypes.func,
 };
 

@@ -8,7 +8,8 @@ class Input extends React.Component {
     let inputProps = Object.assign({}, this.props, {
       type: 'text',
       onChange: this.handleChange,
-      className: ''
+      className: '',
+      style: {}
     })
 
     let getValidationResult = this.context.FormMixin && this.context.FormMixin.getValidationResult;
@@ -24,8 +25,13 @@ class Input extends React.Component {
       }
     }
 
+    let wrapProps = Object.assign({}, {
+      style: this.props.style,
+      className: classes.join(' ')
+    });
+
     return (
-      <div className={classes.join(' ')}>
+      <div {...wrapProps}>
         <input {...inputProps} />
         <div className="msg">{errMsg}</div>
       </div>

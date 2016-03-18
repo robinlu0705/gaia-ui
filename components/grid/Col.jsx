@@ -11,6 +11,11 @@ let Col = (props) => {
       classes.push('col-' + size + '-' + props[size]);
     }
 
+    let hidden = size + 'Hidden';
+    if (props[hidden] > 0) {
+      classes.push('col-' + size + '-hidden-' + props[hidden]);
+    }
+
     let offset = size + 'Offset';
     if (props[offset] > 0) {
       classes.push('col-' + size + '-offset-' + props[offset]);
@@ -35,5 +40,28 @@ let Col = (props) => {
     <div {...newProps}>{props.children}</div>
   )
 }
+
+Col.propTypes = {
+  xs: React.PropTypes.number,
+  sm: React.PropTypes.number,
+  md: React.PropTypes.number,
+  lg: React.PropTypes.number,
+  xsHidden: React.PropTypes.bool,
+  smHidden: React.PropTypes.bool,
+  mdHidden: React.PropTypes.bool,
+  lgHidden: React.PropTypes.bool,
+  xsOffset: React.PropTypes.number,
+  smOffset: React.PropTypes.number,
+  mdOffset: React.PropTypes.number,
+  lgOffset: React.PropTypes.number,
+  xsPush: React.PropTypes.number,
+  smPush: React.PropTypes.number,
+  mdPush: React.PropTypes.number,
+  lgPush: React.PropTypes.number,
+  xsPull: React.PropTypes.number,
+  smPull: React.PropTypes.number,
+  mdPull: React.PropTypes.number,
+  lgPull: React.PropTypes.number
+};
 
 export default Col;
