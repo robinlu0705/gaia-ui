@@ -34,18 +34,8 @@
       }
     };
 
-    <Grid fluid={true}>
-      <Row>
-        <Form validation={validation} validationError={validationError}>
-          <Col sm={12} md={5}>
-            <Input name='input1' placeholder="enter some numbers" />
-          </Col>
-          <Col sm={12} md={5}>
-            <Input name='input2' placeholder="no longer than 4" />
-          </Col>
-          <Col sm={12} md={2}>
-            <Submit />
-          </Col>
-        </Form>
-      </Row>
-    </Grid>
+    <Form validation={validation} validationError={validationError}>
+      <Input style={{ width: '250px', marginRight: '20px' }} name='input1' placeholder="enter some numbers" />
+      <Input style={{ width: '250px', marginRight: '20px' }} name='input2' placeholder="no longer than 4" />
+      <Submit style={{ width: 'auto' }} value="submit" />
+    </Form>

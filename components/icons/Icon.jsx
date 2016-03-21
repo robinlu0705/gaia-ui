@@ -16,4 +16,11 @@ let Icon = (props) => {
   )
 }
 
+Icon.propTypes = {
+  /**
+   * name of Icon Font
+   */
+  name: React.PropTypes.string.isRequired
+};
+
 export default Icon;

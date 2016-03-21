@@ -13,13 +13,15 @@ module.exports = {
 
   updateWebpackConfig: function(webpackConfig, env) {
     // Your source files folder or array of folders, should not include node_modules
-    let dir = path.join(__dirname, 'components');
+    let componentsDir = path.join(__dirname, 'components');
+    let assetsDir = path.join(__dirname, 'assets');
   
+    webpackConfig.entry.push(path.join(__dirname, 'assets/material-icons/material-icons.css'));
     webpackConfig.module.loaders.push(
       // Babel loader will use your project’s .babelrc
       {
         test: /\.jsx?$/,
-        include: dir,
+        include: componentsDir,
         exclude: /node_modules/,
         loader: 'babel',
         query: {
@@ -38,8 +40,18 @@ module.exports = {
       // Other loaders that is needed for your components
       {
         test: /\.less$/,
-        include: dir,
+        include: componentsDir,
         loader: "style-loader!css-loader!less-loader"
+      },
+      {
+        test: /\.css$/,
+        include: assetsDir,
+        loader: "style-loader!css-loader"
+      },
+      {
+        test   : /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        include: assetsDir,
+        loader : 'file-loader'
       }
     );
 

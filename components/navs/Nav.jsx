@@ -40,4 +40,22 @@ class Nav extends React.Component {
   }
 }
 
+Nav.propTypes = {
+  /**
+   * object with property values of string or React Element
+   */
+  tabs: React.PropTypes.objectOf(React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.element
+  ])),
+  /**
+   * avtivated tab
+   */
+  selected: React.PropTypes.string,
+  /**
+   * arguments: [ newSelected ]
+   */
+  onChange: React.PropTypes.func
+};
+
 export default Nav;

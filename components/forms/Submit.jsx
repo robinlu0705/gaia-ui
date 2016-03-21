@@ -29,7 +29,7 @@ Submit.contextTypes = {
 };
 
 Submit.propTypes = {
-  onClick: React.PropTypes.func
+  skin: React.PropTypes.oneOf(['primary', 'contrast', 'secondary', 'tertiary'])
 };
 
 export default Submit;

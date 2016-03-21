@@ -33,6 +33,10 @@ class Dropdown extends React.Component {
       .concat(isFolded ? 'is-folded' : [])
       .concat(className ? className.split(' ') : []);
 
+    let newProps = Object.assign({}, this.props, {
+      className: classes.join(' ')
+    });
+
     let dropdownItems = [];
     let optionItems = [];
     let currentSelectedText;
@@ -61,7 +65,7 @@ class Dropdown extends React.Component {
     });
 
     return (
-      <div className={classes.join(' ')}>
+      <div {...newProps}>
         <div className="list-pivot">
           <div className="list">
             <ul>
@@ -115,12 +119,21 @@ class Dropdown extends React.Component {
 };
 
 Dropdown.propTypes = {
-  skin: React.PropTypes.string,
+  skin: React.PropTypes.oneOf(['primary', 'contrast', 'secondary', 'tertiary']),
+  /**
+   * default selection
+   */
   value: React.PropTypes.string,
+  /**
+   * shape of { text, value }
+   */
   options: React.PropTypes.arrayOf(React.PropTypes.shape({
     text: React.PropTypes.string,
     value: React.PropTypes.string.isRequired
   })),
+  /**
+   * arguments: [ newValue ]
+   */
   onChange: React.PropTypes.func
 };
 
