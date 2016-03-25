@@ -1,0 +1,45 @@
+@import "../../helpers/Mixins.less";
+@import "../../helpers/Variables.less";
+
+.Gaia-forms-Select {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  font-size: 1em;
+  font-size: 1rem;
+  position: relative;
+  letter-spacing: 1px;
+
+  select {
+    display: inline-block;
+    width: 100%;
+    font-size: 1em;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    outline: 0;
+    border: 1px solid @select-border;
+    border-radius: 2px;
+    padding: @select-padding-v @select-padding-right @select-padding-v @select-padding-left;
+    background-color: @select-bg;
+    color: @select-color;
+    box-sizing: border-box;
+  }
+
+  &:after {
+    position: absolute;
+    display: inline-block;
+    content: ''; 
+    width: 0;
+    height: 0;
+    border-width: 0.4em 0.3em 0 0.3em;
+    border-style: solid;
+    border-color: @select-color transparent transparent transparent;
+    right: @select-padding-right;
+    margin-right: -0.65em;
+    top: @input-padding-v;
+    margin-top: 0.36em;
+    pointer-events: none;
+  }
+}
