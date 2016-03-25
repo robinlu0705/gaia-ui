@@ -10,7 +10,7 @@ class Input extends React.Component {
       onChange: this.handleChange,
       className: '',
       style: {}
-    })
+    });
 
     let getValidationResult = this.context.FormMixin && this.context.FormMixin.getValidationResult;
 
