@@ -3,6 +3,7 @@
 .Gaia-navs-Pagination {
   display: inline-block;
   padding: 0;
+  margin: 0;
 
   li {
     display: inline;
@@ -16,8 +17,8 @@
       background-color: @chroma-primary;
       color: @gray-base;
     }
-    &:hover:not(.active) {
-      background-color: @gray-lighter;
+    &.disabled {
+      cursor: not-allowed;
     }
   }
 }
