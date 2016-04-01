@@ -1,7 +1,8 @@
     let Wrap = React.createClass({
       getInitialState: function() {
         return {
-          displayPage: 1 
+          displayPage: 1,
+          ellipsisDisplayPage: 1
         };
       },
 
@@ -11,15 +12,22 @@
         });
       },
 
+      changeEllipsisDisplayPage(selectedPage) {
+        this.setState({
+          ellipsisDisplayPage: selectedPage
+        });
+      },
+
+
       render: function() {
         let totalItem = 150;
         let displayItemsNumber = 10;
-        let totalPages = totalItem / displayItemsNumber;
+        let pages = totalItem / displayItemsNumber;
 
         return (
           <div>
-            <Pagination ellipsis={false} activePage={this.state.displayPage} items={totalPages} onChange={(key) => { this.changeDisplayPage(key); }} />
-            <Pagination activePage={this.state.displayPage} items={totalPages} onChange={(key) => { this.changeDisplayPage(key); }} />
+            <Pagination ellipsis={false} activePage={this.state.displayPage} totalPages={pages} onChange={(key) => { this.changeDisplayPage(key); }} />
+            <Pagination activePage={this.state.ellipsisDisplayPage} totalPages={pages} onChange={(key) => { this.changeEllipsisDisplayPage(key); }} />
           </div>
         );
       }
