@@ -4,3 +4,4 @@ export InputGroup from './InputGroup';
 export InputGroupButton from './InputGroupButton';
 export InputGroupLabel from './InputGroupLabel';
 export Submit from './Submit';
+export Select from './Select';

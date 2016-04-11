@@ -1,31 +1,44 @@
 import {} from './Select.less';
 import React from 'react';
 
-class Select extends React.Component {
-  render() {
-    let { className, style } = this.props;
-    let classes = ['Gaia-forms-Select'].concat(className ? className.split(' ') : []);
+const Select = ({ defaultValue, option, onChange }) => {
 
-    let wrapProps = Object.assign({}, {
-      style: style,
-      className: classes.join(' ')
-    });
+  let optionList = [];
+  let handleChange = (e) => {
+    onChange(e.target.value); 
+  };
 
-    let selectProps = Object.assign({}, this.props, {
-      className: '',
-      style: {}
-    });
+  option.forEach((item, idx) => {
+    optionList.push(<option key={idx} value={item.val}>{item.text}</option>);
+  });
 
-    console.log(selectProps);
+  return (
+    <div className="Gaia-forms-Select">
+      <select defaultValue={defaultValue} onChange={handleChange}>
+        {optionList}
+      </select>
+    </div>
+  );
+};
 
-    return (
-      <div {...wrapProps}>
-        <select {...selectProps}>
-          {this.props.children}
-        </select>
-      </div>
-    );
-  }
+Select.propTypes = {
+  /** 
+   * Default selected value 
+   */
+  defaultValue: React.PropTypes.oneOfType([
+    React.PropTypes.number,
+    React.PropTypes.string
+  ]).isRequired,
+  /** 
+   * Example: [{val: 1, text: 'Jan'}] 
+   */
+  option: React.PropTypes.array.isRequired,
+  onChange: React.PropTypes.func.isRequired
+};
+
+Select.defaultProps = {
+  defaultValue: 0,
+  option: []
 };
 
 export default Select;
