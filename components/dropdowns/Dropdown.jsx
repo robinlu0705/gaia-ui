@@ -5,67 +5,55 @@ class Dropdown extends React.Component {
   constructor(props) {
     super(props);
 
-    let value;
-
-    props.options.forEach((val, idx) => {
-      if (val.value) {
-        if (val.value === props.value || value === undefined) {
-          value = val.value;
-        }
-      }
-    });
-
     this.state = {
-      isFolded: true,
-      value: value
+      isFolded: true
     };
 
     this.handleBtnClick = this.handleBtnClick.bind(this);
-    this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleDropdownItemClick = this.handleDropdownItemClick.bind(this);
   }
 
   render() {
     let { value, isFolded } = this.state;
-    let { options, className, skin } = this.props;
+    let { caption, options, className, skin } = this.props;
     let classes = ['Gaia-dropdowns-Dropdown']
       .concat(skin ? `skin-${skin}` : [])
       .concat(isFolded ? 'is-folded' : [])
       .concat(className ? className.split(' ') : []);
 
-    let newProps = Object.assign({}, this.props, {
+    let rootProps = Object.assign({}, this.props, {
       className: classes.join(' ')
     });
 
     let dropdownItems = [];
-    let optionItems = [];
-    let currentSelectedText;
 
     options.forEach((val, idx) => {
-      if (val.value) {
-        optionItems.push((
-          <option key={idx} value={val.value}>{val.text}</option>
-        ));
-        dropdownItems.push((
-          <li key={idx}
-            onClick={
-              (event) => {
-                this.handleDropdownItemClick(val.value)
-              }
-            }
+      let link;
+
+      if (typeof val.action === 'function') {
+        link = (
+          <a href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              val.action();
+            }}
           >
             {val.text}
-          </li>
-        ));
-
-        if (currentSelectedText === undefined || val.value === value) {
-          currentSelectedText = val.text;
-        }
+          </a>
+        );
+      } else {
+        link = <a href={val.action}>{val.text}</a>;
       }
+
+      dropdownItems.push((
+        <li key={idx} onClick={this.handleDropdownItemClick}>
+          {link}
+        </li>
+      ));
     });
 
     return (
-      <div {...newProps}>
+      <div {...rootProps}>
         <div className="list-pivot">
           <div className="list">
             <ul>
@@ -76,16 +64,11 @@ class Dropdown extends React.Component {
           </div>
         </div>
         <div className="value">
-          {currentSelectedText}
+          {caption}
           <div className="clickable-area"
             onClick={this.handleBtnClick}
           />
         </div>
-        <select name={this.props.name} value={value}
-          onChange={this.handleSelectChange}
-        >
-          {optionItems}
-        </select>
       </div>
     );
   }
@@ -98,43 +81,29 @@ class Dropdown extends React.Component {
     });
   }
 
-  handleSelectChange(event) {
-    this.setState({
-      value: event.target.value
-    });
-  }
-
-  handleDropdownItemClick(val) {
-    let onChangeCB = this.props.onChange;
+  handleDropdownItemClick() {
     this.setState((prevState, curProps) => {
-      if (onChangeCB && typeof onChangeCB === 'function') {
-        onChangeCB(val);
-      }
       return {
-        isFolded: true,
-        value: val
+        isFolded: true
       };
     });
   }
 };
 
 Dropdown.propTypes = {
+  caption: React.PropTypes.string,
   skin: React.PropTypes.oneOf(['primary', 'contrast', 'secondary', 'tertiary']),
   /**
-   * default selection
-   */
-  value: React.PropTypes.string,
-  /**
-   * shape of { text, value }
+   * shape of { text, action },
+   * action can be an URL string or a callback function
    */
   options: React.PropTypes.arrayOf(React.PropTypes.shape({
     text: React.PropTypes.string,
-    value: React.PropTypes.string.isRequired
-  })),
-  /**
-   * arguments: [ newValue ]
-   */
-  onChange: React.PropTypes.func
+    action: React.PropTypes.oneOfType([
+      React.PropTypes.func,
+      React.PropTypes.string
+    ])
+  }))
 };
 
 export default Dropdown;
