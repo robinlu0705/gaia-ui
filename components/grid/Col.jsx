@@ -1,43 +1,35 @@
+import {} from './flexboxgrid.css';
 import React from 'react';
 
-let sizes = ['xs', 'sm', 'md', 'lg'];
+const classMap = {
+  xs: 'col-xs',
+  sm: 'col-sm',
+  md: 'col-md',
+  lg: 'col-lg',
+  xsOffset: 'col-xs-offset',
+  smOffset: 'col-sm-offset',
+  mdOffset: 'col-md-offset',
+  lgOffset: 'col-lg-offset',
+  first: 'first',
+  last: 'last'
+};
 
 let Col = (props) => {
-  let classes = props.className && props.className.split(' ') || [];
-  let newProps;
+  let classes = ['col'].concat(props.className ? props.className.split(' ') : []);
+  let rootProps;
   
-  sizes.forEach((size) => {
-    if (props[size] > 0) {
-      classes.push('col-' + size + '-' + props[size]);
+  for (const key in props) {
+    if (props.hasOwnProperty(key) && classMap[key]) {
+      classes.push(`${classMap[key]}-${props[key]}`);
     }
+  }
 
-    let hidden = size + 'Hidden';
-    if (props[hidden] > 0) {
-      classes.push('col-' + size + '-hidden-' + props[hidden]);
-    }
-
-    let offset = size + 'Offset';
-    if (props[offset] > 0) {
-      classes.push('col-' + size + '-offset-' + props[offset]);
-    }
-
-    let push = size + 'Push';
-    if (props[push] > 0) {
-      classes.push('col-' + size + '-push-' + props[push]);
-    }
-
-    let pull = size + 'Pull';
-    if (props[pull] > 0) {
-      classes.push('col-' + size + '-pull-' + props[pull]);
-    }
-  });
-
-  newProps = Object.assign({}, props, {
+  rootProps = Object.assign({}, props, {
     className: classes.join(' ')
   });
   
   return (
-    <div {...newProps}>{props.children}</div>
+    <div {...rootProps}>{props.children}</div>
   )
 }
 
@@ -46,22 +38,12 @@ Col.propTypes = {
   sm: React.PropTypes.number,
   md: React.PropTypes.number,
   lg: React.PropTypes.number,
-  xsHidden: React.PropTypes.bool,
-  smHidden: React.PropTypes.bool,
-  mdHidden: React.PropTypes.bool,
-  lgHidden: React.PropTypes.bool,
   xsOffset: React.PropTypes.number,
   smOffset: React.PropTypes.number,
   mdOffset: React.PropTypes.number,
   lgOffset: React.PropTypes.number,
-  xsPush: React.PropTypes.number,
-  smPush: React.PropTypes.number,
-  mdPush: React.PropTypes.number,
-  lgPush: React.PropTypes.number,
-  xsPull: React.PropTypes.number,
-  smPull: React.PropTypes.number,
-  mdPull: React.PropTypes.number,
-  lgPull: React.PropTypes.number
+  first: React.PropTypes.oneOf(['xs', 'sm', 'md', 'lg']),
+  last: React.PropTypes.oneOf(['xs', 'sm', 'md', 'lg'])
 };
 
 export default Col;

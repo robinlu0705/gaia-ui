@@ -1,18 +1,26 @@
-import {} from './Grid.less';
+import {} from './flexboxgrid.css';
 import React from 'react';
 
 let Grid = (props) => {
   let classes = props.className && props.className.split(' ') || [];
-  let newProps;
+  let rootProps;
 
   classes.push(props.fluid && 'container-fluid' || 'container');
-  newProps = Object.assign({}, props, {
+  rootProps = Object.assign({}, props, {
     className: classes.join(' ')
   });
 
   return (
-    <div {...newProps}>{props.children}</div>
+    <div {...rootProps}>{props.children}</div>
   )
 };
+
+Grid.propTypes = {
+  fluid: React.PropTypes.bool
+};
+
+Grid.defaultProps = {
+  fluid: false
+}
 
 export default Grid;
