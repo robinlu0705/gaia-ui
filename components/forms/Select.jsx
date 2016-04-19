@@ -1,20 +1,32 @@
 import {} from './Select.less';
 import React from 'react';
 
-const Select = ({ defaultValue, option, onChange }) => {
-
+const Select = (props) => {
+  let { option, onChange, style, className } = props;
   let optionList = [];
   let handleChange = (e) => {
     onChange(e.target.value); 
   };
+
+  let rootClasses = ['Gaia-forms-Select'].concat(className ? className : []);
+  let rootProps = Object.assign({}, {
+    style: style,
+    className: rootClasses.join(' ')
+  });
+
+  let selectProps = Object.assign({}, props, {
+    onChange: handleChange,
+    className: '',
+    style: {},
+  });
 
   option.forEach((item, idx) => {
     optionList.push(<option key={idx} value={item.val}>{item.text}</option>);
   });
 
   return (
-    <div className="Gaia-forms-Select">
-      <select defaultValue={defaultValue} onChange={handleChange}>
+    <div {...rootProps}>
+      <select {...selectProps}>
         {optionList}
       </select>
     </div>
@@ -23,13 +35,6 @@ const Select = ({ defaultValue, option, onChange }) => {
 
 Select.propTypes = {
   /** 
-   * Default selected value 
-   */
-  defaultValue: React.PropTypes.oneOfType([
-    React.PropTypes.number,
-    React.PropTypes.string
-  ]).isRequired,
-  /** 
    * Example: [{val: 1, text: 'Jan'}] 
    */
   option: React.PropTypes.array.isRequired,
@@ -37,7 +42,6 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
-  defaultValue: 0,
   option: []
 };
 
