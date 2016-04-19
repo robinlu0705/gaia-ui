@@ -45,7 +45,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        include: assetsDir,
+        include: [assetsDir, componentsDir],
         loader: "style-loader!css-loader"
       },
       {
