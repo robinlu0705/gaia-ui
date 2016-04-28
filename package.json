@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "karma-test": "karma start",
+    "test": "karma start",
     "styleguide-watch": "styleguidist server",
     "styleguide-build": "styleguidist build"
   },
