@@ -10,8 +10,7 @@ export default (props) => {
 
   let bodyElm = data.map((val, idx) => {
     let rowElm = columns.map((column, idx) => {
-      let key = typeof column === 'string' ? column : column.key;
-      return <td key={idx}>{val[key]}</td>;
+      return <td key={idx}>{val[column]}</td>;
     });
 
     return <tr key={idx}>{rowElm}</tr>;
