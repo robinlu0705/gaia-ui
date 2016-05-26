@@ -1,0 +1,57 @@
+@import "../../helpers/Variables.less";
+
+.Gaia-table-Table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: auto;
+  width: 100%;
+  font-size: 1em;
+  font-size: 1rem;
+
+  th, td {
+    text-align: left;
+    font-weight: normal;
+    border: 0;
+    line-height: 1.5;
+    padding: 0.75em 1em;
+    border-top: 1px solid @gray-lighter;
+  }
+
+  th {
+    border: 0;
+    font-weight: normal;
+    white-space: nowrap;
+    background-color: @gray;
+    color: white;
+  }
+
+  thead {
+    th + th {
+      border-left: 1px solid @gray-lighter;
+    }
+  }
+
+  &.skin-primary {
+    th {
+      background-color: @chroma-primary;
+    }
+  }
+
+  &.skin-contrast {
+    th {
+      background-color: @chroma-contrast;
+    }
+  }
+
+  &.skin-secondary {
+    th {
+      background-color: @chroma-secondary;
+    }
+  }
+
+  &.skin-tertiary {
+    th {
+      background-color: @chroma-tertiary;
+    }
+  }
+}
