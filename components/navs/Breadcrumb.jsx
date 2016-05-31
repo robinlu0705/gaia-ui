@@ -2,32 +2,6 @@ import {} from './Breadcrumb.less';
 import React from 'react';
 
 class Breadcrumb extends React.Component {
-  render() {
-    let tabs = this.props.tabs || {};
-    let selected = this.props.selected;
-    let list = [];
-    
-
-    for (let key in tabs) {
-      let tab = tabs[key];
-      let className = key === selected ? 'is-selected' : '';
-      let item = (
-        <li key={key} className={className} onClick={this.handleItemClick.bind(this, key)}>{tab}</li>
-      );
-
-      list.push(item);
-    };
-
-    return (
-      <nav className="Gaia-navs-Breadcrumb">
-        <p>Test</p>
-        <ol>
-          {list}
-        </ol>
-      </nav>
-    );
-  }
-
   constructor(props) {
     super(props);
     this.handleItemClick = this.handleItemClick.bind(this);
@@ -39,24 +13,47 @@ class Breadcrumb extends React.Component {
       onChange(key);
     }
   }
+
+  render() {
+    let tabs = this.props.tabs || [];
+    let classes = this.props.className && this.props.className.split(' ') || [];
+    let list = [];
+    let newProps;
+    
+    classes.push('Gaia-navs-Breadcrumb');
+    classes.push(this.props.disableLast ? 'disableLast' : 'ableLast');
+
+    newProps = Object.assign({}, this.props, {
+      className: classes.join(' ')
+    });
+
+    for (let key in tabs) {
+      let tab = tabs[key];
+      let item = (
+        <li key={key}><span onClick={this.handleItemClick.bind(this, key)}>{tab}</span></li>
+      );
+      list.push(item);
+    };
+
+    return (
+      <nav {...newProps}>
+        <ol>
+          {list}
+        </ol>
+      </nav>
+    );
+  }
 }
 
 Breadcrumb.propTypes = {
-  /**
-   * object with property values of string or React Element
-   */
-  tabs: React.PropTypes.objectOf(React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.element
-  ])),
-  /**
-   * avtivated tab
-   */
-  selected: React.PropTypes.string,
-  /**
-   * arguments: [ newSelected ]
-   */
+  tabs: React.PropTypes.array,
+  disableLast: React.PropTypes.bool,
+  className: React.PropTypes.string,
   onChange: React.PropTypes.func
+};
+
+Breadcrumb.defaultProps = {
+  disableLast: true
 };
 
 export default Breadcrumb;
