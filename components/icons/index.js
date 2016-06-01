@@ -1,2 +1,4 @@
-export Icon from './Icon';
-export IconText from './IconText';
+import Icon from './Icon';
+import IconText from './IconText';
+
+export { Icon, IconText };
