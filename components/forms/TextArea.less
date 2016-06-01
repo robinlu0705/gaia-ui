@@ -1,0 +1,15 @@
+@import "../../helpers/Variables.less";
+
+.Gaia-forms-TextArea {
+  border-radius: 3px;
+  width: 100%;
+
+  &:not([resize]) {
+    resize: none;
+  }
+  &[disabled] {
+    background-color: @input-bg-disabled;
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}

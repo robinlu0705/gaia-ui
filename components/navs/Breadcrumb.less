@@ -1,0 +1,35 @@
+@import "../../helpers/Variables.less";
+
+.Gaia-navs-Breadcrumb {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0 0 20px 0;
+
+  ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: inline;
+    &+ li:before {
+      content: " / ";
+      padding: 0 2px;
+    }
+  }
+
+  &.ableLast {
+    li > span:hover {
+      color: @chroma-primary;
+      cursor: pointer;
+    }
+  }
+
+  &.disableLast {
+    li:not(:last-of-type) > span:hover {
+      color: @chroma-primary;
+      cursor: pointer;
+    }
+  }
+}
