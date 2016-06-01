@@ -1,2 +1,4 @@
-export Nav from './Nav';
-export Pagination from './Pagination';
+import Nav from './Nav';
+import Pagination from './Pagination';
+
+export { Nav, Pagination };

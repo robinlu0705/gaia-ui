@@ -1,7 +1,9 @@
-export Form from './Form';
-export Input from './Input';
-export InputGroup from './InputGroup';
-export InputGroupButton from './InputGroupButton';
-export InputGroupLabel from './InputGroupLabel';
-export Submit from './Submit';
-export Select from './Select';
+import Form from './Form';
+import Input from './Input';
+import InputGroup from './InputGroup';
+import InputGroupButton from './InputGroupButton';
+import InputGroupLabel from './InputGroupLabel';
+import Submit from './Submit';
+import Select from './Select';
+
+export { Form, Input, InputGroup, InputGroupButton, InputGroupLabel, Submit, Select };
