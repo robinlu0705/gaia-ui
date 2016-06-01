@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import Form from './Form';
 import Input from './Input';
 import InputGroup from './InputGroup';
