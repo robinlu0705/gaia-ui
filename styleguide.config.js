@@ -4,7 +4,7 @@ var path = require('path');
 
 module.exports = {
   serverHost: '0.0.0.0',
-  serverPort: '3000',
+  serverPort: process.env.PORT || '3000',
   title: 'Gaia Style Guide',
   components: './components/*/*.jsx',
   getExampleFilename: function(componentpath) {
@@ -15,8 +15,9 @@ module.exports = {
     // Your source files folder or array of folders, should not include node_modules
     let componentsDir = path.join(__dirname, 'components');
     let assetsDir = path.join(__dirname, 'assets');
-  
+
     webpackConfig.entry.push(path.join(__dirname, 'assets/material-icons/material-icons.css'));
+    webpackConfig.entry.push(path.join(__dirname, 'styleguide.css'));
     webpackConfig.module.loaders.push(
       // Babel loader will use your project’s .babelrc
       {
@@ -46,6 +47,11 @@ module.exports = {
       {
         test: /\.css$/,
         include: [assetsDir, componentsDir],
+        loader: "style-loader!css-loader"
+      },
+      {
+        test: /styleguide\.css$/,
+        include: __dirname,
         loader: "style-loader!css-loader"
       },
       {
