@@ -8,15 +8,20 @@ class Dropdown extends React.Component {
   }
 
   componentWillMount() {
-    document.addEventListener('click', this.handleClickOutside, false);
+    if (typeof this.props.onOutsideClick === 'function') {
+      document.addEventListener('click', this.handleClickOutside, false);
+    }
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.handleClickOutside, false);
+    if (typeof this.props.onOutsideClick === 'function') {
+      document.removeEventListener('click', this.handleClickOutside, false);
+    }
   }
 
   render() {
     let { isExpanded, align, trigger, pane, className } = this.props;
+    let { onTriggerClick } = this.props;
     let rootClass = ['Gaia-dropdowns-Dropdown']
       .concat(isExpanded ? ['is-expanded'] : [])
       .concat(align ? [`align-${align}`] : [])
@@ -28,17 +33,15 @@ class Dropdown extends React.Component {
 
     return (
       <div {...rootProps} ref="root">
-        <div className="trigger">{trigger}</div>
+        <div className="trigger" onClick={onTriggerClick}>{trigger}</div>
         <div className="pane-wrap"><div className="pane">{pane}</div></div>
       </div>
     );
   }
 
   handleClickOutside(e) {
-    let { onClickOutside } = this.props;
-
-    if (typeof onClickOutside === 'function' && !(this.refs.root.contains(e.target))) {
-      onClickOutside()
+    if (!(this.refs.root.contains(e.target))) {
+      this.props.onOutsideClick()
     }
   }
 };
@@ -50,7 +53,8 @@ Dropdown.propTypes = {
   ]).isRequired,
   pane: React.PropTypes.element.isRequired,
   align: React.PropTypes.string,
-  onClickOutside: React.PropTypes.func
+  onTriggerClick: React.PropTypes.func,
+  onOutsideClick: React.PropTypes.func
 };
 
 export default Dropdown;
