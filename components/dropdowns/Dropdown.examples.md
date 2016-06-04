@@ -1,27 +1,38 @@
-Dropdowns are 100% width by default; Use Grid for layout.
+Dropdown is a stateless element. Wrap it with an element holding the isExpanded state for interaction.
 
-    let style = { width: '120px', margin: '0 10px' };
-    let options = [
-      {
-        text: 'facebook',
-        action: '#1'
+    let Wrap = React.createClass({
+      getInitialState: function() {
+        return {
+          isExpanded: false
+        };
       },
-      {
-        text: 'twitter',
-        action: '#2'
-      },
-      {
-        text: 'alert',
-        action() {
-          alert('some action')
-        }
+
+      render: function() {
+        let trigger = (
+          <Button
+            onClick={() => {
+              this.setState({ isExpanded: !this.state.isExpanded });
+            }}
+          >
+            Trigger
+          </Button>
+        );
+
+        let pane = (
+          <div style={{ cursor: 'pointer' }}
+            onClick={() => {
+              this.setState({ isExpanded: false });
+            }}
+          >
+            <div>pane</div>
+            <div>pane</div>
+            <div>pane</div>
+            <div>pane</div>
+          </div>
+        );
+
+        return <Dropdown isExpanded={this.state.isExpanded} trigger={trigger} pane={pane} />;
       }
-    ];
+    });
 
-    <div>
-      <Dropdown caption="Share" style={style} options={options} />
-      <Dropdown caption="Share" style={style} options={options} skin="primary" />
-      <Dropdown caption="Share" style={style} options={options} skin="contrast" />
-      <Dropdown caption="Share" style={style} options={options} skin="secondary" />
-      <Dropdown caption="Share" style={style} options={options} skin="tertiary" />
-    </div>
+    <Wrap />
