@@ -19,8 +19,12 @@ let Col = (props) => {
   let rootProps;
   
   for (const key in props) {
-    if (props.hasOwnProperty(key) && classMap[key]) {
-      classes.push(`${classMap[key]}-${props[key]}`);
+    if (props.hasOwnProperty(key)) {
+      if (key === 'fit' && props[key]) {
+        classes.push('col-fit');
+      } else if (classMap[key]) {
+        classes.push(`${classMap[key]}-${props[key]}`);
+      }
     }
   }
 
@@ -43,7 +47,8 @@ Col.propTypes = {
   mdOffset: React.PropTypes.number,
   lgOffset: React.PropTypes.number,
   first: React.PropTypes.oneOf(['xs', 'sm', 'md', 'lg']),
-  last: React.PropTypes.oneOf(['xs', 'sm', 'md', 'lg'])
+  last: React.PropTypes.oneOf(['xs', 'sm', 'md', 'lg']),
+  fit: React.PropTypes.bool
 };
 
 export default Col;
