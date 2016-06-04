@@ -58,7 +58,13 @@
   font-size: 1em;
 }
 
-
+.un-selectable() {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
 
 // pure mixins
 .placeholder(@color) {
@@ -121,7 +127,7 @@
   text-align: center;
   vertical-align: middle;
   box-sizing: border-box;
-  user-select: none;
+  .un-selectable();
   cursor: pointer;
 
   &:focus {
