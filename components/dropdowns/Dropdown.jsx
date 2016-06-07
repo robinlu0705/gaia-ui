@@ -4,106 +4,57 @@ import React from 'react';
 class Dropdown extends React.Component {
   constructor(props) {
     super(props);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
+  }
 
-    this.state = {
-      isFolded: true
-    };
+  componentWillMount() {
+    if (typeof this.props.onOutsideClick === 'function') {
+      document.addEventListener('click', this.handleClickOutside, false);
+    }
+  }
 
-    this.handleBtnClick = this.handleBtnClick.bind(this);
-    this.handleDropdownItemClick = this.handleDropdownItemClick.bind(this);
+  componentWillUnmount() {
+    if (typeof this.props.onOutsideClick === 'function') {
+      document.removeEventListener('click', this.handleClickOutside, false);
+    }
   }
 
   render() {
-    let { value, isFolded } = this.state;
-    let { caption, options, className, skin } = this.props;
-    let classes = ['Gaia-dropdowns-Dropdown']
-      .concat(skin ? `skin-${skin}` : [])
-      .concat(isFolded ? 'is-folded' : [])
+    let { isExpanded, align, trigger, pane, className } = this.props;
+    let { onTriggerClick } = this.props;
+    let rootClass = ['Gaia-dropdowns-Dropdown']
+      .concat(isExpanded ? ['is-expanded'] : [])
+      .concat(align ? [`align-${align}`] : [])
       .concat(className ? className.split(' ') : []);
 
     let rootProps = Object.assign({}, this.props, {
-      className: classes.join(' ')
-    });
-
-    let dropdownItems = [];
-
-    options.forEach((val, idx) => {
-      let link;
-
-      if (typeof val.action === 'function') {
-        link = (
-          <a href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              val.action();
-            }}
-          >
-            {val.text}
-          </a>
-        );
-      } else {
-        link = <a href={val.action}>{val.text}</a>;
-      }
-
-      dropdownItems.push((
-        <li key={idx} onClick={this.handleDropdownItemClick}>
-          {link}
-        </li>
-      ));
+      className: rootClass.join(' ')
     });
 
     return (
-      <div {...rootProps}>
-        <div className="list-pivot">
-          <div className="list">
-            <ul>
-              {dropdownItems}
-            </ul>
-            <div className="triangle"></div>
-            <div className="circle"></div>
-          </div>
-        </div>
-        <div className="value">
-          {caption}
-          <div className="clickable-area"
-            onClick={this.handleBtnClick}
-          />
-        </div>
+      <div {...rootProps} ref="root">
+        <div className="trigger" onClick={onTriggerClick}>{trigger}</div>
+        <div className="pane-wrap"><div className="pane">{pane}</div></div>
       </div>
     );
   }
 
-  handleBtnClick(event) {
-    this.setState((prevState, curProps) => {
-      return Object.assign({}, prevState, {
-        isFolded: !prevState.isFolded
-      });
-    });
-  }
-
-  handleDropdownItemClick() {
-    this.setState((prevState, curProps) => {
-      return {
-        isFolded: true
-      };
-    });
+  handleClickOutside(e) {
+    if (!(this.refs.root.contains(e.target))) {
+      this.props.onOutsideClick()
+    }
   }
 };
 
 Dropdown.propTypes = {
-  caption: React.PropTypes.string,
-  skin: React.PropTypes.oneOf(['primary', 'contrast', 'secondary', 'tertiary']),
-  /**
-   * shape of { text, action },
-   * action can be an URL string or a callback function
-   */
-  options: React.PropTypes.arrayOf(React.PropTypes.shape({
-    text: React.PropTypes.string,
-    action: React.PropTypes.oneOfType([
-      React.PropTypes.func,
-      React.PropTypes.string
-    ])
-  }))
+  trigger: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.element
+  ]).isRequired,
+  pane: React.PropTypes.element.isRequired,
+  align: React.PropTypes.string,
+  onTriggerClick: React.PropTypes.func,
+  onOutsideClick: React.PropTypes.func
 };
 
 export default Dropdown;
