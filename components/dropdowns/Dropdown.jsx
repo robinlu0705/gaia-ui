@@ -40,7 +40,7 @@ class Dropdown extends React.Component {
   }
 
   handleClickOutside(e) {
-    if (!(this.refs.root.contains(e.target))) {
+    if (!(this.refs.root.contains(e.target)) && document.contains(e.target)) {
       this.props.onOutsideClick()
     }
   }
