@@ -1,0 +1,53 @@
+.Gaia-tooltips-TooltipTrigger {
+  display: inline-block;
+  position: relative;
+  font-size: 1em;
+  font-size: 1rem;
+
+  .tooltip {
+    display: inline-block;
+    position: absolute;
+    z-index: 9;
+    top: 100%;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.4s visibility ease-in-out, 0.4s opacity ease-in-out;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &.align-left {
+    .tooltip {
+      left: 0;
+      right: auto;
+    }
+  }
+
+  &.align-right {
+    .tooltip {
+      left: auto;
+      right: 0;
+    }
+  }
+
+  &.align-center {
+    .tooltip {
+      left: 50%;
+      right: auto;
+      visibility: hidden;
+      
+      .tooltip-content {
+        position: relative;
+        left: -50%;
+        visibility: visible;
+      }
+    }
+  }
+}
