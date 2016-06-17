@@ -17,9 +17,6 @@
     position: absolute;
     margin-top: 3px;
     top: 100%;
-    left: 0;
-    right: auto;
-    transform-origin: left top;
     transform: scale(0, 0);
     opacity: 0;
     overflow: hidden;
@@ -51,6 +48,14 @@
       left: auto;
       right: 0;
       transform-origin: right top;
+    }
+  }
+
+  &.align-left {
+    .pane-wrap {
+      left: 0;
+      right: auto;
+      transform-origin: left top;
     }
   }
 }

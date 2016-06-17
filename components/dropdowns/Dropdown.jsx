@@ -24,7 +24,7 @@ class Dropdown extends React.Component {
     let { onTriggerClick } = this.props;
     let rootClass = ['Gaia-dropdowns-Dropdown']
       .concat(isExpanded ? ['is-expanded'] : [])
-      .concat(align ? [`align-${align}`] : [])
+      .concat([`align-${align}`])
       .concat(className ? className.split(' ') : []);
 
     let rootProps = Object.assign({}, this.props, {
@@ -51,10 +51,18 @@ Dropdown.propTypes = {
     React.PropTypes.string,
     React.PropTypes.element
   ]).isRequired,
+  
   pane: React.PropTypes.element.isRequired,
   align: React.PropTypes.string,
   onTriggerClick: React.PropTypes.func,
+  /**
+   * triggered when outside of Dropdown is clicked
+   */
   onOutsideClick: React.PropTypes.func
 };
+
+Dropdown.defaultProps = {
+  align: 'left'
+}
 
 export default Dropdown;

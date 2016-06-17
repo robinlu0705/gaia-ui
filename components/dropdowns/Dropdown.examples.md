@@ -8,15 +8,7 @@ Dropdown is a stateless element. Wrap it with an element holding the isExpanded 
       },
 
       render: function() {
-        let trigger = (
-          <Button
-            onClick={() => {
-              this.setState({ isExpanded: !this.state.isExpanded });
-            }}
-          >
-            Trigger
-          </Button>
-        );
+        let trigger = <Button>Trigger</Button>;
 
         let pane = (
           <div style={{ cursor: 'pointer' }}
@@ -31,7 +23,16 @@ Dropdown is a stateless element. Wrap it with an element holding the isExpanded 
           </div>
         );
 
-        return <Dropdown isExpanded={this.state.isExpanded} trigger={trigger} pane={pane} />;
+        return <Dropdown isExpanded={this.state.isExpanded} trigger={trigger} pane={pane}
+          onTriggerClick={() => {
+            this.setState({ isExpanded: !this.state.isExpanded });
+          }}
+          onOutsideClick={() => {
+            if (this.state.isExpanded) {
+              this.setState({ isExpanded: false });
+            }
+          }}
+        />;
       }
     });
 
