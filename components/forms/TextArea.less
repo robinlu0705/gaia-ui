@@ -1,9 +1,13 @@
+@import "../../helpers/Mixins.less";
 @import "../../helpers/Variables.less";
 
 .Gaia-forms-TextArea {
   border-radius: 3px;
   width: 100%;
   box-sizing: border-box;
+  border: 1px solid @input-border;
+  padding: @input-padding-v @input-padding-h;
+  .placeholder(@input-placeholder);
 
   &:not([resize]) {
     resize: none;
