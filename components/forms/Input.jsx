@@ -32,7 +32,7 @@ class Input extends React.Component {
 
     return (
       <div {...wrapProps}>
-        <input {...inputProps} />
+        <input ref="inputNode" {...inputProps} />
         <div className="msg">{errMsg}</div>
       </div>
     );
@@ -62,6 +62,10 @@ class Input extends React.Component {
     if (typeof onChangeCB === 'function') {
       onChangeCB(event.target.value);
     }
+  }
+
+  val() {
+    return this.refs.inputNode.value;
   }
 }
 
