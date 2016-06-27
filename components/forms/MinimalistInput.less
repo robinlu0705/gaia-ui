@@ -1,0 +1,117 @@
+@import "../../helpers/Mixins.less";
+@import "../../helpers/Variables.less";
+
+.Gaia-forms-Input-error-msg-mixin() {
+  display: none;
+  height: 1em;
+  margin-top: 6px;
+  margin-left: 2px;
+  color: @input-color-error;
+  font-size: 0.875em;
+}
+
+.Gaia-forms-MinimalistInput {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+  font-size: 1em;
+  font-size: 1rem;
+  position: relative;
+  letter-spacing: 1px;
+  cursor: text;
+  position: relative;
+
+  &.is-valid {
+  }
+
+  &.is-error {
+  }
+
+  &.is-focused {
+    &:after {
+      right: 0;
+    }
+  }
+
+  input {
+    width: 100%;
+    flex: 0 1 auto;
+    border: 0;
+    border-radius: 0;
+    padding: 9px 6px;
+    appearance: none;
+    background-color: transparent;
+    color: @input-color;
+    display: inline-block;
+    box-sizing: border-box;
+    font-size: 1em;
+    cursor: inherit;
+    outline: 0;
+
+    &[disabled] {
+      cursor: not-allowed;
+    }
+
+    &:focus {
+    }
+
+    .placeholder(@input-placeholder);
+  }
+
+  &:before {
+    content: '';
+    height: 1px;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    background-color: @gray-light;
+  }
+
+  &:after {
+    content: '';
+    height: 2px;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 100%;
+    top: auto;
+    background-color: @gray;
+    transition: 0.2s right ease-out;
+  }
+
+  .msg {
+    .Gaia-forms-Input-error-msg-mixin();
+  }
+
+  &.skin-primary {
+    &:after {
+      background-color: @chroma-primary;
+    }
+  }
+
+  &.skin-contrast {
+    &:after {
+      background-color: @chroma-contrast;
+    }
+  }
+
+  &.skin-secondary {
+    &:after {
+      background-color: @chroma-secondary;
+    }
+  }
+
+  &.skin-tertiary {
+    &:before {
+      background-color: @chroma-tertiary;
+    }
+
+    &:after {
+      background-color: @chroma-tertiary;
+    }
+  }
+}
