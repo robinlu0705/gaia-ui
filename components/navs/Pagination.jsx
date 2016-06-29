@@ -72,7 +72,7 @@ class Pagination extends React.Component {
       displayPagination.splice(0, 0, <li key={items + 1} onClick={this.handleClickPreviousButton.bind(this, onChange, activePage, items)}>«</li>);
     }
     if (prev && items > 0) {
-      displayPagination.splice(displayPagination.length, 0, <li key={items + 2} onClick={this.handleClickNextButton.bind(this, onChange,  activePage)}>»</li>);
+      displayPagination.splice(displayPagination.length, 0, <li key={items + 2} onClick={this.handleClickNextButton.bind(this, onChange, activePage, items)}>»</li>);
     }
 
     return (
