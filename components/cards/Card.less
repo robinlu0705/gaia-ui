@@ -8,12 +8,31 @@
   color: @card-color;
   .boxShadowHelper(1);
 
-  .title {
-    font-size: 1.2em;
-    font-weight: 600;
+  .header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
     padding: 15px 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
+    &.only-search{
+      justify-content: flex-end; 
+    }
+    &.is-hide {
+      display: none;
+    }
+  }
+  
+  .title {
+    font-size: 1.2em;
+    font-weight: 600;
+
+    &.is-hide {
+      display: none;
+    }
+  }
+
+  .search {
     &.is-hide {
       display: none;
     }
