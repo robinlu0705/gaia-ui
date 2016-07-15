@@ -19,7 +19,7 @@ let Button = (props) => {
 };
 
 Button.propTypes = {
-  skin: React.PropTypes.oneOf(['primary', 'contrast', 'secondary', 'tertiary']),
+  skin: React.PropTypes.oneOf(['default', 'primary', 'contrast', 'secondary', 'tertiary']),
   disabled: React.PropTypes.bool
 }
 
