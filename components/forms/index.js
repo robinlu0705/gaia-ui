@@ -7,5 +7,6 @@ import InputGroupLabel from './InputGroupLabel';
 import Submit from './Submit';
 import Select from './Select';
 import TextArea from './TextArea';
+import Radio from './Radio';
 
-export { Form, MinimalistInput, Input, InputGroup, InputGroupButton, InputGroupLabel, Submit, Select, TextArea };
+export { Form, MinimalistInput, Input, InputGroup, InputGroupButton, InputGroupLabel, Submit, Select, TextArea, Radio };

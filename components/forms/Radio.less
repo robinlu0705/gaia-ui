@@ -1,0 +1,63 @@
+@import "../../helpers/Variables.less";
+
+.Gaia-forms-Radio {
+  .unit {
+    margin: 12px auto;
+
+    label {
+      position: relative;
+      cursor: pointer;
+      color: @radio-color;
+      font-size: 1em;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      padding-left: @radio-padding-left;
+
+      &.checked:after {
+        z-index: 1;
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        height: 12px;
+        width: 12px;
+        background-color: @chroma-primary;
+        border-radius: 50%;
+        animation: zoom-in 0.2s;
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background-color: @gray-lighter;
+        border-radius: 50%;
+      }
+
+      &.disabled {
+        cursor: not-allowed;
+        color: @gray;
+        opacity: 0.4;
+      }
+    }
+
+    input {
+      display: none;
+    }
+  }
+
+  @keyframes zoom-in {
+    0% {
+      transform: scale(0); 
+    }
+    90% {
+      transform: scale(1.2); 
+    }
+    100% {
+      transform: scale(1); 
+    } 
+  }
+}
