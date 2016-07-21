@@ -1,0 +1,109 @@
+@import "../../helpers/Variables.less";
+
+@keyframes animation { 
+  0% { transform: matrix3d(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  2.6% { transform: matrix3d(0.186, 0, 0, 0, 0, 0.277, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  5.21% { transform: matrix3d(0.347, 0, 0, 0, 0, 0.485, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  5.71% { transform: matrix3d(0.375, 0, 0, 0, 0, 0.519, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  10.31% { transform: matrix3d(0.596, 0, 0, 0, 0, 0.748, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  11.31% { transform: matrix3d(0.635, 0, 0, 0, 0, 0.783, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  15.52% { transform: matrix3d(0.771, 0, 0, 0, 0, 0.888, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  17.02% { transform: matrix3d(0.809, 0, 0, 0, 0, 0.912, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  20.62% { transform: matrix3d(0.882, 0, 0, 0, 0, 0.954, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  22.62% { transform: matrix3d(0.913, 0, 0, 0, 0, 0.969, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  28.33% { transform: matrix3d(0.973, 0, 0, 0, 0, 0.993, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  30.93% { transform: matrix3d(0.989, 0, 0, 0, 0, 0.997, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  33.93% { transform: matrix3d(1.002, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  41.24% { transform: matrix3d(1.016, 0, 0, 0, 0, 1.002, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  45.15% { transform: matrix3d(1.017, 0, 0, 0, 0, 1.002, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  72.57% { transform: matrix3d(1.004, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); }
+  100% { transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1); } 
+}
+
+.local-bg(@color) {
+  .option {
+    .label {
+      &:before {
+        background-color: @color;
+      }
+    }
+  }
+}
+
+.Gaia-forms-EnumSelect {
+  display: flex;
+  font-size: 1em;
+  font-size: 1rem;
+  border: 1px solid @gray-light;
+  border-radius: 3px;
+  padding: 3px;
+
+  &.direction-row {
+    flex-direction: row;
+  }
+
+  &.direction-column {
+    flex-direction: column;
+  }
+
+  .option {
+    text-align: center;
+    flex: 1 0 auto;
+
+    .hidden-radio {
+      display: none;
+
+      &:checked + .label {
+        .text {
+          color: white;
+        }
+
+        &:before {
+          animation: animation 400ms linear both;
+        }
+      }
+    }
+
+    .label {
+      position: relative;
+      display: block;
+      padding: 5px;
+      border-radius: 2px;
+      cursor: pointer;
+
+      .text {
+        color: @gray-light;
+        position: relative;
+      }
+
+      &:before {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        border-radius: 2px;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: @gray;
+        transform: scale(0);
+      }
+    }
+  }
+
+  &.skin-primary {
+    .local-bg(@chroma-primary);
+  }
+
+  &.skin-contrast {
+    .local-bg(@chroma-contrast);
+  }
+
+  &.skin-secondary {
+    .local-bg(@chroma-secondary);
+  }
+
+  &.skin-tertiary {
+    .local-bg(@chroma-tertiary);
+  }
+}

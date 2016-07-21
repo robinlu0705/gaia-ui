@@ -5,24 +5,40 @@
   padding: @radio-padding-v @radio-padding-h;
 
   .unit {
-    color: @radio-color;
+    color: @gray-lighter;
     font-size: 1em;
     font-size: 1rem;
     letter-spacing: 1px;
-    border-radius: 3px;
     background-color: @radio-bg;
-    box-shadow: 0 1px 1px 1px @gray-light;
+    border: 1px solid @gray;
+    box-shadow: 0px 2px 4px -2px @gray;
     padding: @radio-padding-v @radio-padding-h;
 
     &.checked {
-      box-shadow: 0 1px 1px 1px @gray-light inset;
+      box-shadow: 0 2px 4px -2px @gray inset;
+      color: @gray-dark;
     }
 
     &.disabled {
       cursor: not-allowed;
       background-color: @radio-bg-disabled;
+      color: @gray-dark;
       opacity: 0.4;
     }
+  }
+
+  .unit:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+
+  .unit:last-child {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
+  .unit + .unit {
+    margin-left: -1px;
   }
 
   input {
