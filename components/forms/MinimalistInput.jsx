@@ -23,7 +23,6 @@ class MinimalistInput extends React.Component {
 
     let errMsg = '';
     let inputProps = Object.assign({}, this.props, {
-      type: 'text',
       onChange: this.handleChange,
       onFocus: this.handleFocus,
       onBlur: this.handleBlur,
@@ -82,11 +81,16 @@ class MinimalistInput extends React.Component {
 }
 
 MinimalistInput.propTypes = {
+  type: React.PropTypes.oneOf(['text', 'password']),
   skin: React.PropTypes.oneOf(['primary', 'contrast', 'secondary', 'tertiary']),
   name: React.PropTypes.string,
   onChange: React.PropTypes.func,
   onFocus: React.PropTypes.func,
   onBlur: React.PropTypes.func
+};
+
+MinimalistInput.defaultProps = {
+  type: 'text'
 };
 
 export default MinimalistInput;
