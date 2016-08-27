@@ -1,12 +1,23 @@
 "use strict";
 
 var path = require('path');
+var glob = require('glob');
 
 module.exports = {
   serverHost: '0.0.0.0',
   serverPort: process.env.PORT || '3000',
   title: 'Gaia Style Guide',
-  components: './components/*/*.jsx',
+  // components: './components/*/*.jsx',
+  sections: glob.sync(path.resolve(__dirname, 'components/*')).map(function(match) {
+    var sectionName = (/.*\/(.*)$/.exec(match))[1];
+    sectionName = sectionName[0].toUpperCase() + sectionName.slice(1);
+
+    return {
+      name: sectionName,
+      components: match + '/*.jsx'
+    };
+  }),
+
   getExampleFilename: function(componentpath) {
     return componentpath.replace(/\.jsx?$/,   '.examples.md');
   },
