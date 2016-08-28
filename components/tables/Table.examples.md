@@ -1,18 +1,18 @@
     let columns = [
       {
-        text: '訂單編號',
+        text: 'Order',
         key: 'orderId'
       },
       {
-        text: '蘋果',
+        text: 'Apple',
         key: 'apple'
       },
       {
-        text: '大腸花',
+        text: 'Banana',
         key: 'banana'
       },
       {
-        text: '桃子',
+        text: 'Peach',
         key: 'peach'
       }
     ];
@@ -29,6 +29,12 @@
         apple: 100,
         banana: 101,
         peach: 102
+      },
+      {
+        orderId: '0003',
+        apple: 1000,
+        banana: 1001,
+        peach: 1002
       }
     ];
 

@@ -22,8 +22,12 @@ Selects are 100% width by default; Use Grid for layout.
         });
 
         return (
-          <Select defaultValue="1" option={monthOption} onChange={this.handleChangeMonth}>
-          </Select>
+          <Select
+            style={{ width: '300px', maxWidth: '100%' }}
+            defaultValue="1"
+            option={monthOption}
+            onChange={this.handleChangeMonth}
+          />
         );
       }
     }

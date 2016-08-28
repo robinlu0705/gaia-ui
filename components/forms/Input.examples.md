@@ -2,8 +2,8 @@ Inputs are 100% width by default; Use Grid for layout.
 
 normal:
 
-    <Input placeholder="hit me" />
+    <Input style={{ width: '300px', maxWidth: '100%' }} placeholder="hit me" />
 
-disabled: 
+disabled:
 
-    <Input placeholder="don't hit me" disabled={true} />
+    <Input style={{ width: '300px', maxWidth: '100%' }} placeholder="don't hit me" disabled={true} />

@@ -8,7 +8,7 @@ ButtonRadio is a stateless element.
       getInitialState: function() {
         return {
           radio1Checked: 'test1',
-          radio2Checked: 'test1'
+          radio2Checked: 'test2'
         };
       },
 
@@ -17,19 +17,19 @@ ButtonRadio is a stateless element.
           <div>
             <div style={style}>
               <ButtonRadio
-                choices={options1} 
-                radioName="radio1" 
+                choices={options1}
+                radioName="radio1"
                 checked={this.state.radio1Checked}
-                onInputChange={(newChecked) => this.setState({ radio1Checked: newChecked })} 
+                onInputChange={(newChecked) => this.setState({ radio1Checked: newChecked })}
               />
             </div>
             <div style={style}>
-              <ButtonRadio 
-                choices={options2} 
-                radioName="radio2" 
+              <ButtonRadio
+                choices={options2}
+                radioName="radio2"
                 checked={this.state.radio2Checked}
                 disabled={['test1']}
-                onInputChange={(newChecked) => this.setState({ radio2Checked: newChecked })} 
+                onInputChange={(newChecked) => this.setState({ radio2Checked: newChecked })}
               />
             </div>
           </div>

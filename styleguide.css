@@ -2,3 +2,40 @@ html {
   font-size: 13px;
   font-family: 'Hiragino Sans GB','华文细黑','STHeiti','微软雅黑','Microsoft YaHei',SimHei,'Helvetica Neue',Helvetica,Arial,sans-serif !important;
 }
+
+.ReactStyleguidist-Layout__sidebar {
+  background-color: #2a2d3a;
+}
+
+.ReactStyleguidist-Layout__heading {
+  color: #e0e5e8;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  border-color: #5f647b;
+}
+
+.ReactStyleguidist-TableOfContents__section.ReactStyleguidist-colors__link:link {
+  color: #81aad2;
+}
+
+.ReactStyleguidist-TableOfContents__section.ReactStyleguidist-colors__link:visited {
+  color: #81aad2;
+}
+
+.ReactStyleguidist-TableOfContents__section.ReactStyleguidist-colors__link:hover {
+  color: #81aad2;
+}
+
+.ReactStyleguidist-TableOfContents__link.ReactStyleguidist-colors__link:link {
+  color: #8599a9;
+}
+
+.ReactStyleguidist-TableOfContents__link.ReactStyleguidist-colors__link:visited {
+  color: #8599a9;
+}
+
+.ReactStyleguidist-TableOfContents__link.ReactStyleguidist-colors__link:hover {
+  color: #f28a25;
+}

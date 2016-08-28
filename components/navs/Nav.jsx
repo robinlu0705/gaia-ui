@@ -6,7 +6,9 @@ class Nav extends React.Component {
     let tabs = this.props.tabs || {};
     let selected = this.props.selected;
     let list = [];
-    
+    let rootProps = Object.assign({}, this.props, {
+      className: ['Gaia-navs-Nav'].concat(this.className ? this.className.split(' ') : []).join(' ')
+    });
 
     for (let key in tabs) {
       let tab = tabs[key];
@@ -19,7 +21,7 @@ class Nav extends React.Component {
     };
 
     return (
-      <nav className="Gaia-navs-Nav">
+      <nav {...rootProps}>
         <ul>
           {list}
         </ul>

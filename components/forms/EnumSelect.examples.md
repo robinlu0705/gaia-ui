@@ -19,9 +19,16 @@ direction: row
 
         this.handleChange = this.handleChange.bind(this);
       }
-      
+
       render() {
-        return <EnumSelect skin="contrast" name="some-select" options={options} value={this.state.selectedValue} onChange={this.handleChange} />;
+        return <EnumSelect
+          style={{ width: '300px', maxWidth: '100%' }}
+          skin="contrast"
+          name="some-select"
+          options={options}
+          value={this.state.selectedValue}
+          onChange={this.handleChange}
+        />;
       }
 
       handleChange(value) {
@@ -50,9 +57,17 @@ direction: column
 
         this.handleChange = this.handleChange.bind(this);
       }
-      
+
       render() {
-        return <EnumSelect direction="column" skin="contrast" name="some-select2" options={options} value={this.state.selectedValue} onChange={this.handleChange} />;
+        return <EnumSelect
+          style={{ width: '200px', maxWidth: '100%' }}
+          direction="column"
+          skin="contrast"
+          name="some-select2"
+          options={options}
+          value={this.state.selectedValue}
+          onChange={this.handleChange}
+        />;
       }
 
       handleChange(value) {

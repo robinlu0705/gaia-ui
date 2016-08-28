@@ -11,15 +11,14 @@ Dropdown is a stateless element. Wrap it with an element holding the isExpanded 
         let trigger = <Button>Trigger</Button>;
 
         let pane = (
-          <div style={{ cursor: 'pointer' }}
+          <div style={{ width: '200px', textAlign: 'center', fontWeight: 'bold', color: 'gray' }}
             onClick={() => {
               this.setState({ isExpanded: false });
             }}
           >
-            <div>pane</div>
-            <div>pane</div>
-            <div>pane</div>
-            <div>pane</div>
+            <div>You can put</div>
+            <div style={{ marginTop: '20px' }}>Anything</div>
+            <div style={{ marginTop: '20px' }}>Here</div>
           </div>
         );
 

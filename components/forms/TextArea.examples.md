@@ -3,7 +3,7 @@ normal:
 
     <Grid fluid={true}>
       <Row>
-        <Col xs={12}>
+        <Col xs={12} sm={10} md={8} lg={6}>
           <TextArea placeholder="SELECT * FROM Table" rows={3} />
         </Col>
       </Row>
@@ -13,7 +13,7 @@ disabled:
 
     <Grid fluid={true}>
       <Row>
-        <Col xs={12}>
+        <Col xs={12} sm={10} md={8} lg={6}>
           <TextArea placeholder="SELECT * FROM Table" rows={3} disabled={true} />
         </Col>
       </Row>

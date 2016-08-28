@@ -8,7 +8,7 @@ Radio is a stateless element.
       getInitialState: function() {
         return {
           radio1Checked: 'test1',
-          radio2Checked: 'test1'
+          radio2Checked: 'test2'
         };
       },
 
@@ -18,20 +18,20 @@ Radio is a stateless element.
             <div style={style}>
               <p>Group 1</p>
               <Radio
-                choices={options1} 
-                radioName="radio3" 
+                choices={options1}
+                radioName="radio3"
                 checked={this.state.radio1Checked}
-                onInputChange={(newChecked) => this.setState({ radio1Checked: newChecked })} 
+                onInputChange={(newChecked) => this.setState({ radio1Checked: newChecked })}
               />
             </div>
             <div style={style}>
               <p>Group 2</p>
-              <Radio 
-                choices={options2} 
-                radioName="radio4" 
+              <Radio
+                choices={options2}
+                radioName="radio4"
                 checked={this.state.radio2Checked}
                 disabled={['test1']}
-                onInputChange={(newChecked) => this.setState({ radio2Checked: newChecked })} 
+                onInputChange={(newChecked) => this.setState({ radio2Checked: newChecked })}
               />
             </div>
           </div>

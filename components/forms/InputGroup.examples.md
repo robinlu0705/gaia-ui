@@ -1,6 +1,6 @@
 InputGroup with label:
 
-    <InputGroup>
+    <InputGroup style={{ width: '500px', maxWidth: '100%' }}>
       <InputGroupLabel>Table</InputGroupLabel>
       <Input placeholder="table name" />
     </InputGroup>
@@ -8,14 +8,14 @@ InputGroup with label:
 
 InputGroup with button:
 
-    <InputGroup>
+    <InputGroup style={{ width: '500px', maxWidth: '100%' }}>
       <Input placeholder="table name" />
       <InputGroupButton>Go</InputGroupButton>
     </InputGroup>
 
 InputGroup with label and button:
 
-    <InputGroup>
+    <InputGroup style={{ width: '500px', maxWidth: '100%' }}>
       <InputGroupLabel>Table</InputGroupLabel>
       <Input placeholder="table name" />
       <InputGroupButton>Go</InputGroupButton>

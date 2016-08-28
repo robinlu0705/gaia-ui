@@ -15,7 +15,10 @@ Nav is a stateless element. Wrap it with an element holding the state of current
 
       render: function() {
         return (
-          <Nav tabs={tabs} selected={this.state.currentTab}
+          <Nav
+            style={{ width: '600px', maxWidth: '100%' }}
+            tabs={tabs}
+            selected={this.state.currentTab}
             onChange={(newTab) => {
               this.setState({
                 currentTab: newTab
