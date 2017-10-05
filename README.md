@@ -1,14 +1,13 @@
-# Gaia
+# Gaia UI
 
-An in-house React UI framework
+A set of stateless React components for the web.
 
-## Setup
-1. `npm install` - install all node_modules needed
+## Create A Living Style-guide
 
-## Gaia Styleguide
-1. `npm run styleguide-build` - build component styleguide into `/styleguide`
-2. `npm run styleguide-watch` - start a dev-server at port 3000
+A living style-guide can help document styles, provide examples and create shared understanding among all team members.
 
-## Unit tests
-1. unit tests using Karma(along with Mocha or Jasmine) are in `/components/**/__karma-tests__`. Switch framework by changing `frameworkName` variable in `karma.conf.js`
-2. `npm run karma-test` to start a test server, then karma will automatically start phantom.js to simulate a headless browser accessing test server and collect test results.
+Gaia UI uses [styleguidist](https://github.com/styleguidist/react-styleguidist) to build the living style-guide for you.
+
+1. `npm install` - install all dependencies
+2. `npm run styleguide-build` - build the component style-guide into `./styleguide`
+3. Visit `./styleguide/index.html` to start browsing
