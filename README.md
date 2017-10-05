@@ -2,6 +2,8 @@
 
 A set of stateless React components for the web.
 
+### See a [Demo](https://robinlu0705.github.io/gaia-ui/styleguide/)
+
 ## Create A Living Style-guide
 
 A living style-guide can help document styles, provide examples and create shared understanding among all team members.
